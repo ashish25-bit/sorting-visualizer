@@ -4,13 +4,15 @@ import { bubbleSortAlgo } from './algorithms/BubbleSort';
 
 const App = () => {
     const [numberArray, setNumberArray] = useState([])
-    const [range, setRange] = useState(5)
-    const [sortSpeed, setSortSpeed] = useState(1000)
+    const [range, setRange] = useState(50)
+    const [sortSpeed, setSortSpeed] = useState(5)
+    const [sorting, setSorting] = useState(false)
 
     const min = 10
     const max = 100
 
     const generateArray = () => {
+        setSorting(false)
         // generate-numbers 
         let numbers = []
         for (let i = 0; i < 100; i++)
@@ -29,6 +31,7 @@ const App = () => {
     }
 
     const bubbleSort = () => {
+        setSorting(true)
         let numbers = numberArray
         numbers = numbers.slice(0, range)
         const swaps = bubbleSortAlgo(numbers)
@@ -77,6 +80,7 @@ const App = () => {
                         value={range} 
                         className="slider" 
                         onChange={e => setRangeOfNumbers(e)}
+                        disabled={sorting}
                     />{' '}
                     <label style={{ fontSize: '12px' }}>{range} Elements</label> {' '}
                     <input 
@@ -96,6 +100,7 @@ const App = () => {
                     <button
                         style={btnStyle}
                         onClick={() => bubbleSort()}
+                        disabled={sorting}
                     >Bubble Sort</button>
                 </div>
             </div>
@@ -113,7 +118,6 @@ const App = () => {
                     )
                 }
             </div>
-            {/* <div style={{ position: 'absolute', height: '680px', width: '80%', background: 'rgba(255, 0, 0, 0.5)', top: '35px' }}></div> */}
             <div style={flexContainer}>
                 <div className='mark-num-style'>10</div>
                 <div className='mark-num-style'>20</div>
@@ -135,12 +139,15 @@ const flexContainer = {
 }
 
 const btnStyle = {
-    margin: '0 10px'
+    margin: '0 10px',
+    border: 'none',
+    background: 'none',
+    borderBottom: '1px #ccc solid'
 }
 
 const inputTime = {
     border: '1px solid #ccc',
-    width: '50px',
+    width: '30px',
     padding: '2px 5px',
     fontSize: '10px', 
     borderRadius: '5px',
@@ -148,57 +155,3 @@ const inputTime = {
 } 
 
 export default App;
-
-// for (let i = 0; i < swaps.length; i++ ) {
-//     const [barIndex1, barIndex2]  = swaps[i]    
-//     setTimeout(() => {
-//         const tempNumber = copy_numbers[barIndex1]
-//         copy_numbers[barIndex1] = copy_numbers[barIndex2]
-//         copy_numbers[barIndex2] = tempNumber
-
-//         bar1.style.width = `${copy_numbers[barIndex1]}%`
-//         bar2.style.width = `${copy_numbers[barIndex2]}%`
-
-//         if (range <= 50) {
-//             bar1.innerText = copy_numbers[barIndex1]
-//             bar2.innerText = copy_numbers[barIndex2]
-//         }
-//     }, i * sortSpeed)
-// } 
-
-// for (let i=0; i<comparisions.length; i++) {
-//     const { comparision: [barIndex1, barIndex2], swap } = comparisions[i]
-//     // console.log(barIndex1, barIndex2)
-//     const bar1 = bars[barIndex1]
-//     const bar2 = bars[barIndex2]
-//     setTimeout(() => {
-//         bar1.style.backgroundColor = 'red'
-//         bar2.style.backgroundColor = 'red'
-
-//         if (!swap) {
-//             setTimeout(() => {
-//                 bar1.style.backgroundColor = 'var(--barColor)'
-//                 bar2.style.backgroundColor = 'var(--barColor)'
-//             }, 10)
-//         }
-//         else {
-//             setTimeout(() => {
-//                 const tempNumber = copy_numbers[barIndex1]
-//                 copy_numbers[barIndex1] = copy_numbers[barIndex2]
-//                 copy_numbers[barIndex2] = tempNumber
-
-//                 bar1.style.width = `${copy_numbers[barIndex1]}%`
-//                 bar2.style.width = `${copy_numbers[barIndex2]}%`
-
-//                 if (range <= 50) {
-//                     bar1.innerText = copy_numbers[barIndex1]
-//                     bar2.innerText = copy_numbers[barIndex2]
-//                 }
-                
-//                 bar1.style.backgroundColor = 'var(--barColor)'
-//                 bar2.style.backgroundColor = 'var(--barColor)'
-//             }, 10)
-//         }
-
-//     }, i * sortSpeed)
-// }
