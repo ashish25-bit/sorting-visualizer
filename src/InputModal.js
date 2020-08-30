@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal'
 import MarkNumber from './MarkNumber'
+import Bars from './Bars'
 
 Modal.setAppElement('#root')
-const InputModal = ({ view, closeModal, arrayAsInput }) => {
+const InputModal = ({ view, closeModal, arrayAsInput, btnStyle }) => {
+
+    const modify = {
+        margin: '0',
+        marginRight: '10px'
+    }
+
+    const btnStyleModified = {
+        ...btnStyle, 
+        ...modify
+    }
 
     const [number, setNumber] = useState(5)
     const [inputArray, setInputArray] = useState([])
@@ -46,21 +57,18 @@ const InputModal = ({ view, closeModal, arrayAsInput }) => {
                 />
                 <button style={addBtnStyle}>Add Number</button>
             </form>
-            <div className='bar_container2'>
-                {
-                    inputArray.map((number, index) => (
-                        <div 
-                            style={{ 'width': `${number}%` }}
-                            key={index}
-                            className='number-bar'
-                        >{inputArray.length <=40 ? number : null}
-                        </div>
-                    ))
-                }
-            </div>
+            <Bars 
+                containerClass={'bar_container2'}
+                displayArray={inputArray}
+                background={null}
+                range={inputArray.length}
+                inputArrayOn={true}
+                comparision={40}
+            />
             <MarkNumber customStyle={{ display: 'flex' }} />
-            <button style={btnStyle} onClick={() => closeModal()}>Cancel</button>
-            <button style={btnStyle} onClick={() => confirmArray()}>Confirm Array</button>
+            <button style={btnStyleModified} onClick={() => closeModal()}>Cancel</button>
+            <button style={btnStyleModified} onClick={() => confirmArray()}>Confirm Array</button>
+            <button style={btnStyleModified} onClick={() => setInputArray([])}>Clear Array</button>
             <small style={{ color: '#555' }}>Number Of Elements: {inputArray.length}</small>
         </Modal>
     )
@@ -75,10 +83,6 @@ const addBtnStyle = {
     width: 'calc(15% - 15px)',
     padding: '5px 0',
     border: 'none'
-}
-
-const btnStyle = {
-    marginRight: '10px'
 }
 
 export default InputModal

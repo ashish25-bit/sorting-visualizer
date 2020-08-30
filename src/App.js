@@ -3,6 +3,7 @@ import './App.css';
 import { bubbleSortAlgo } from './algorithms/BubbleSort';
 import InputModal from './InputModal'
 import MarkNumber from './MarkNumber'
+import Bars from './Bars'
 
 const App = () => {
     const [numberArray, setNumberArray] = useState([])
@@ -47,20 +48,20 @@ const App = () => {
     }
 
     // get the array for sorting with range number of elements
-    const getArrayInRange = () => {
+    const getArrayInRangeAndChangeState = () => {
+        setSorting(true)
+        setGenerateBtnState(true)
+        setViewAlgoContainer(false)
         let numbers = numberArray
+        if (inputArrayOn)
+            return numbers
         numbers = numbers.slice(0, range)
         return numbers
     }
 
     // bubble sort
     const bubbleSort = () => {
-        setSorting(true)
-        setGenerateBtnState(true)
-        setViewAlgoContainer(false)
-        let numbers = numberArray
-        if (!inputArrayOn)
-            numbers = getArrayInRange()
+        let numbers = getArrayInRangeAndChangeState()
         const delay = bubbleSortAlgo(numbers, sortSpeed)
         setTimeout(() => setGenerateBtnState(false), delay)
     }
@@ -147,25 +148,20 @@ const App = () => {
                     >Input Elements</button>
                 </div>
             </div>
-            <div className='bar_container'>
-                {
-                    numberArray.map((number, index) => 
-                    inputArrayOn || index < range ?
-                            <div 
-                                key={index}
-                                className='number-bar'
-                                style={{ 'width': `${number}%`, background: !sorting ? 'var(--barColor)' : null }}
-                            >{ range <= 50 ? number : null }
-                            </div> : 
-                            null
-                    )
-                }
-            </div>
+            <Bars 
+                containerClass={'bar_container'}
+                displayArray={numberArray}
+                background={!sorting ? 'var(--barColor)' : null}
+                range={range}
+                inputArrayOn={inputArrayOn}
+                comparision={50}
+            />
             <MarkNumber customStyle={flexContainer} />
             <InputModal 
                 view={modalView} 
                 closeModal={closeInputModal}
                 arrayAsInput={setArrayAsInput}
+                btnStyle={btnStyle}
             />
         </div>
     );
