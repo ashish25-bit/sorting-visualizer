@@ -4,6 +4,9 @@
 }
 :root {
     --barColor: #b2c3ff;
+    --sortedColor: #4ec64e;
+    --comparisionColor: #ffff4f;
+    --swapColor: #ed4646;
 }
 
 body, button {

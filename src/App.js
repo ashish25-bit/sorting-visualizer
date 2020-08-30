@@ -4,13 +4,17 @@ import { bubbleSortAlgo } from './algorithms/BubbleSort';
 
 const App = () => {
     const [numberArray, setNumberArray] = useState([])
-    const [range, setRange] = useState(50)
+    const [range, setRange] = useState(5)
     const [sortSpeed, setSortSpeed] = useState(5)
     const [sorting, setSorting] = useState(false)
+    const [generateBtnState, setGenerateBtnState] = useState(false)
 
     const min = 10
     const max = 100
+    
+    useEffect(() => generateArray(), [])
 
+    // making the array with random numbers
     const generateArray = () => {
         setSorting(false)
         // generate-numbers 
@@ -20,45 +24,12 @@ const App = () => {
         setNumberArray(numbers)
     }
 
-    useEffect(() => generateArray(), [])
-
+    // generating random numbers between 10 and 100
     const randomNumber = () => {
         return Math.floor(Math.random() * (max - min + 1)) + min
     }
 
-    const setRangeOfNumbers = e => {
-        setRange(e.target.value)
-    }
-
-    const bubbleSort = () => {
-        setSorting(true)
-        let numbers = numberArray
-        numbers = numbers.slice(0, range)
-        const swaps = bubbleSortAlgo(numbers)
-        let copy_numbers = numberArray.slice(0, range)
-        const bars = document.querySelectorAll('.number-bar')
-        for (let i = 0; i < swaps.length; i++ ) {
-            const [barIndex1, barIndex2]  = swaps[i]
-            
-            const bar1 = bars[barIndex1]
-            const bar2 = bars[barIndex2]
-
-            setTimeout(() => {
-                const tempNumber = copy_numbers[barIndex1]
-                copy_numbers[barIndex1] = copy_numbers[barIndex2]
-                copy_numbers[barIndex2] = tempNumber
-        
-                bar1.style.width = `${copy_numbers[barIndex1]}%`
-                bar2.style.width = `${copy_numbers[barIndex2]}%`
-        
-                if (range <= 50) {
-                    bar1.innerText = copy_numbers[barIndex1]
-                    bar2.innerText = copy_numbers[barIndex2]
-                }
-            }, i * sortSpeed)
-        } 
-    }
-
+    // setting only the positive speed for the array shuffling
     const setInegerSortSpeed = e => {
         const val = e.target.value
 
@@ -67,36 +38,61 @@ const App = () => {
         
         else if (val === '' || val === '-')
             setSortSpeed(1)
-    } 
+    }
+
+    // get the array for sorting with range number of elements
+    const getArrayInRange = () => {
+        let numbers = numberArray
+        numbers = numbers.slice(0, range)
+        return numbers
+    }
+
+    // bubble sort
+    const bubbleSort = () => {
+        setSorting(true)
+        setGenerateBtnState(true)
+        let numbers = getArrayInRange()
+        const delay = bubbleSortAlgo(numbers, sortSpeed)
+        setTimeout(() => setGenerateBtnState(false), delay)
+    }
 
     return (
         <div style={{ width: '80%', margin: '0 auto' }}>
             <div style={flexContainer}>
                 <div style={{ flex: '1' }}>
+                    {/* range element */}
                     <input 
                         type="range" 
                         min="5" 
                         max="100" 
                         value={range} 
                         className="slider" 
-                        onChange={e => setRangeOfNumbers(e)}
+                        onChange={e => setRange(e.target.value)}
                         disabled={sorting}
                     />{' '}
                     <label style={{ fontSize: '12px' }}>{range} Elements</label> {' '}
+                    
+                    {/* timer element */}
                     <input 
                         type='tel'
                         style={inputTime}
                         value={sortSpeed}
                         onChange={setInegerSortSpeed}
                         pattern="^-?[0-9]\d*\.?\d*$"
+                        disabled={generateBtnState}
                     /> {' '}
                     <label style={{ fontSize: '12px' }}>ms(Sorting Speed)</label>
                 </div>
                 <div style={{ flex: '1' }}>
+                    
+                    {/* generating new array */}
                     <button
                         style={btnStyle}
-                        onClick={() => generateArray()
-                    }>Generate New Array</button>
+                        onClick={() => generateArray()}
+                        disabled={generateBtnState}
+                    >Generate New Array</button>
+
+                    {/* bubble sort */}
                     <button
                         style={btnStyle}
                         onClick={() => bubbleSort()}
@@ -111,7 +107,7 @@ const App = () => {
                             <div 
                                 key={index}
                                 className='number-bar'
-                                style={{ 'width': `${number}%` }}
+                                style={{ 'width': `${number}%`, background: !sorting ? 'var(--barColor)' : null }}
                             >{ range <= 50 ? number : null }
                             </div> : 
                             null
