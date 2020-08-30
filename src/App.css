@@ -55,6 +55,13 @@ button {
     width: 100%;
 }
 
+.bar_container2 {
+    display: flex;
+    flex-direction: column;
+    height: 547px;
+    margin: 10px 0;
+}
+
 /* number bar */
 .number-bar {
     margin: 0.4px 0; 

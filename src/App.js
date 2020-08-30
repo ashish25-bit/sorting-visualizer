@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { bubbleSortAlgo } from './algorithms/BubbleSort';
+import InputModal from './InputModal'
+import MarkNumber from './MarkNumber'
 
 const App = () => {
     const [numberArray, setNumberArray] = useState([])
-    const [range, setRange] = useState(5)
+    const [range, setRange] = useState(50)
     const [sortSpeed, setSortSpeed] = useState(5)
     const [sorting, setSorting] = useState(false)
     const [generateBtnState, setGenerateBtnState] = useState(false)
+    const [modalView, setModalView] = useState(false)
+    const [isOpenAlgoContainer, setViewAlgoContainer] = useState(false)
+    const [inputArrayOn, setInputArrayOn] = useState(false)
 
     const min = 10
     const max = 100
@@ -17,6 +22,7 @@ const App = () => {
     // making the array with random numbers
     const generateArray = () => {
         setSorting(false)
+        setInputArrayOn(false)
         // generate-numbers 
         let numbers = []
         for (let i = 0; i < 100; i++)
@@ -51,9 +57,24 @@ const App = () => {
     const bubbleSort = () => {
         setSorting(true)
         setGenerateBtnState(true)
-        let numbers = getArrayInRange()
+        setViewAlgoContainer(false)
+        let numbers = numberArray
+        if (!inputArrayOn)
+            numbers = getArrayInRange()
         const delay = bubbleSortAlgo(numbers, sortSpeed)
         setTimeout(() => setGenerateBtnState(false), delay)
+    }
+
+    // close the modal
+    const closeInputModal = () => setModalView(false)
+
+    // set the array as the input array
+    const setArrayAsInput = inputArray => {
+        setInputArrayOn(true)
+        setModalView(false)
+        setSorting(false)
+        setNumberArray(inputArray)
+        console.log(inputArray)
     }
 
     return (
@@ -68,7 +89,7 @@ const App = () => {
                         value={range} 
                         className="slider" 
                         onChange={e => setRange(e.target.value)}
-                        disabled={sorting}
+                        disabled={sorting || inputArrayOn}
                     />{' '}
                     <label style={{ fontSize: '12px' }}>{range} Elements</label> {' '}
                     
@@ -84,26 +105,52 @@ const App = () => {
                     <label style={{ fontSize: '12px' }}>ms(Sorting Speed)</label>
                 </div>
                 <div style={{ flex: '1' }}>
+
+                    {/* select the algorithm */}
+                    <button
+                        style={btnStyle}
+                        disabled={sorting}
+                        onClick={() => setViewAlgoContainer(prevState => !prevState)}
+                    >Select Algorithm</button>
+
+                    {/* algorithm button container */}
+                    {
+                        isOpenAlgoContainer &&
+                        <div style={btnContainerStyle}>
+                            {/* bubble sort */}
+                            <button
+                                style={algorithmButtonStyle}
+                                onClick={() => bubbleSort()}
+                                disabled={sorting}
+                            >Bubble Sort</button>
+                            
+                            {/* selection sort */}
+                            <button
+                                style={algorithmButtonStyle}
+                                disabled={sorting}
+                            >Selection Sort</button>
+                        </div>
+                    }
                     
                     {/* generating new array */}
                     <button
                         style={btnStyle}
-                        onClick={() => generateArray()}
+                        onClick={() => { generateArray(); setViewAlgoContainer(false)}}
                         disabled={generateBtnState}
                     >Generate New Array</button>
 
-                    {/* bubble sort */}
-                    <button
+                    {/* button for input */}
+                    <button 
                         style={btnStyle}
-                        onClick={() => bubbleSort()}
-                        disabled={sorting}
-                    >Bubble Sort</button>
+                        onClick={() => setModalView(true)}
+                        disabled={generateBtnState}
+                    >Input Elements</button>
                 </div>
             </div>
             <div className='bar_container'>
                 {
                     numberArray.map((number, index) => 
-                        index < range ?
+                    inputArrayOn || index < range ?
                             <div 
                                 key={index}
                                 className='number-bar'
@@ -114,18 +161,12 @@ const App = () => {
                     )
                 }
             </div>
-            <div style={flexContainer}>
-                <div className='mark-num-style'>10</div>
-                <div className='mark-num-style'>20</div>
-                <div className='mark-num-style'>30</div>
-                <div className='mark-num-style'>40</div>
-                <div className='mark-num-style'>50</div>
-                <div className='mark-num-style'>60</div>
-                <div className='mark-num-style'>70</div>
-                <div className='mark-num-style'>80</div>
-                <div className='mark-num-style'>90</div>
-                <div className='mark-num-style'>100</div>
-            </div>
+            <MarkNumber customStyle={flexContainer} />
+            <InputModal 
+                view={modalView} 
+                closeModal={closeInputModal}
+                arrayAsInput={setArrayAsInput}
+            />
         </div>
     );
 }
@@ -149,5 +190,22 @@ const inputTime = {
     borderRadius: '5px',
     marginLeft: '20px'
 } 
+
+const btnContainerStyle = {
+    position: 'fixed',
+    width: '130px',
+    background: '#fff',
+    top: '25px',
+    borderRadius: '5px',
+    boxShadow: '0 0 4px rgba(0,0,0,0.5)'
+}
+
+const algorithmButtonStyle = {
+    width: '100%',
+    border: 'none',
+    background: 'none',
+    borderBottom: '1px solid #ccc',
+    borderRadius: '5px',
+}
 
 export default App;
