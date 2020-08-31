@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { bubbleSortAlgo } from './algorithms/BubbleSort';
+import { selectionSortAlgo } from './algorithms/SelectionSort'
 import InputModal from './InputModal'
 import MarkNumber from './MarkNumber'
 import Bars from './Bars'
@@ -66,6 +67,13 @@ const App = () => {
         setTimeout(() => setGenerateBtnState(false), delay)
     }
 
+    // selection sort
+    const selectionSort = () => {
+        let numbers = getArrayInRangeAndChangeState()
+        const delay = selectionSortAlgo(numbers, sortSpeed)
+        setTimeout(() => setGenerateBtnState(false), delay)
+    }
+
     // close the modal
     const closeInputModal = () => setModalView(false)
 
@@ -128,6 +136,7 @@ const App = () => {
                             {/* selection sort */}
                             <button
                                 style={algorithmButtonStyle}
+                                onClick={() => selectionSort()}
                                 disabled={sorting}
                             >Selection Sort</button>
                         </div>

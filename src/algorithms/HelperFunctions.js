@@ -28,6 +28,5 @@ export const swapBarHeight = (index1, index2, color, speed, width1, width2, rang
             bar1.innerText = width1
             bar2.innerText = width2
         }
-
     }, speed)
 }
