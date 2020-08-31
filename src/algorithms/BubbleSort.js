@@ -1,4 +1,4 @@
-import { swapNumber, changeBarColor, swapBarHeight } from './HelperFunctions'
+import { swapNumber, changeBarColor, swapBarWidth } from './HelperFunctions'
 
 export const bubbleSortAlgo = (numberArray, speed) => {
     const length = numberArray.length
@@ -16,7 +16,7 @@ export const bubbleSortAlgo = (numberArray, speed) => {
                 swapNumber(j, j+1, numberArray)
 
                 // if the numbers are swapped change the width of the bars of the corresponding index
-                swapBarHeight(j, j+1, 'var(--swapColor)', delay, numberArray[j], numberArray[j+1], length)
+                swapBarWidth(j, j+1, 'var(--swapColor)', delay, numberArray[j], numberArray[j+1], length)
                 delay += parseInt(speed)
             }
             changeBarColor(j, 'var(--barColor)', delay)

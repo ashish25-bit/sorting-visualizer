@@ -1,4 +1,4 @@
-import { swapNumber, changeBarColor, swapBarHeight } from './HelperFunctions'
+import { swapNumber, changeBarColor, swapBarWidth } from './HelperFunctions'
 
 export const selectionSortAlgo = (numberArray, speed) => {
     const length = numberArray.length
@@ -26,7 +26,7 @@ export const selectionSortAlgo = (numberArray, speed) => {
         }
         swapNumber(min_index, i, numberArray)
         // swapping the bar widths
-        swapBarHeight(min_index, i, 'var(--swapColor)', delay, numberArray[min_index], numberArray[i], length)
+        swapBarWidth(min_index, i, 'var(--swapColor)', delay, numberArray[min_index], numberArray[i], length)
         delay += parseInt(speed)
         changeBarColor(min_index, 'var(--barColor)', delay)
         changeBarColor(i, 'var(--sortedColor)', delay)
