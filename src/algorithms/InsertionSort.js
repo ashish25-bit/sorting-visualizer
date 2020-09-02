@@ -1,4 +1,4 @@
-import { changeBarColor, changeWidthInsertionSort } from "./HelperFunctions"
+import { changeBarColor, changeBarWidth } from "./HelperFunctions"
 
 export const insertionSortAlgo = (numberArray, speed)=> {
     let length = numberArray.length
@@ -15,8 +15,8 @@ export const insertionSortAlgo = (numberArray, speed)=> {
             numberArray[j+1] = numberArray[j]
             
             // width update
-            changeWidthInsertionSort(j+1, numberArray[j+1], delay, length, 'var(--swapColor)')
-            changeWidthInsertionSort(j, numberArray[j], delay, length, 'var(--swapColor)')
+            changeBarWidth(j+1, numberArray[j+1], delay, length, 'var(--swapColor)')
+            changeBarWidth(j, numberArray[j], delay, length, 'var(--swapColor)')
 
             delay += parseInt(speed)
 
@@ -33,7 +33,7 @@ export const insertionSortAlgo = (numberArray, speed)=> {
             j = j-1
         }
         numberArray[j+1] = key
-        changeWidthInsertionSort(j+1, numberArray[j+1], delay, length, 'var(--sortedColor)')
+        changeBarWidth(j+1, numberArray[j+1], delay, length, 'var(--sortedColor)')
         delay += parseInt(speed)
         // updating bar color
         for(let k=0; k<i; k++) {

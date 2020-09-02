@@ -31,7 +31,7 @@ export const swapBarWidth = (index1, index2, color, speed, width1, width2, range
     }, speed)
 }
 
-export const changeWidthInsertionSort = (index, width, speed, range, color) => {
+export const changeBarWidth = (index, width, speed, range, color) => {
     const bars = document.querySelectorAll('.number-bar')   
     const bar = bars[index]
     setTimeout(() => {

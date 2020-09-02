@@ -3,6 +3,7 @@ import './App.css';
 import { bubbleSortAlgo } from './algorithms/BubbleSort';
 import { selectionSortAlgo } from './algorithms/SelectionSort'
 import { insertionSortAlgo } from './algorithms/InsertionSort'
+import { MergeSortAlgo } from './algorithms/MergeSort'
 import InputModal from './InputModal'
 import MarkNumber from './MarkNumber'
 import Bars from './Bars'
@@ -82,6 +83,13 @@ const App = () => {
         setTimeout(() => setGenerateBtnState(false), delay)
     }
 
+    // merge sort
+    const mergeSort = () => {
+        let numbers = getArrayInRangeAndChangeState()
+        const delay = MergeSortAlgo(numbers, sortSpeed)
+        setTimeout(() => setGenerateBtnState(false), delay)
+    }
+
     // close the modal
     const closeInputModal = () => setModalView(false)
 
@@ -154,6 +162,13 @@ const App = () => {
                                 onClick={() => insertionSort()}
                                 disabled={sorting}
                             >Insertion Sort</button>
+
+                            {/* merge sort */}
+                            <button
+                                style={algorithmButtonStyle}
+                                onClick={() => mergeSort()}
+                                disabled={sorting}
+                            >Merge Sort</button>
                         </div>
                     }
                     
