@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import { bubbleSortAlgo } from './algorithms/BubbleSort';
 import { selectionSortAlgo } from './algorithms/SelectionSort'
@@ -20,11 +20,9 @@ const App = () => {
 
     const min = 10
     const max = 100
-    
-    useEffect(() => generateArray(), [])
 
     // making the array with random numbers
-    const generateArray = () => {
+    const generateArray = useCallback(() => {
         setSorting(false)
         setInputArrayOn(false)
         // generate-numbers 
@@ -32,7 +30,9 @@ const App = () => {
         for (let i = 0; i < 100; i++)
             numbers.push(randomNumber())
         setNumberArray(numbers)
-    }
+    }, [])
+
+    useEffect(() => generateArray(), [generateArray])
 
     // generating random numbers between 10 and 100
     const randomNumber = () => {
