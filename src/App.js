@@ -4,14 +4,16 @@ import { bubbleSortAlgo } from './algorithms/BubbleSort';
 import { selectionSortAlgo } from './algorithms/SelectionSort'
 import { insertionSortAlgo } from './algorithms/InsertionSort'
 import { MergeSortAlgo } from './algorithms/MergeSort'
+import { QuickSortAlgo } from './algorithms/QuickSort';
 import InputModal from './InputModal'
 import MarkNumber from './MarkNumber'
 import Bars from './Bars'
 
 const App = () => {
+    // 29, 69, 35, 14, 49, 10, 100, 12, 16, 68
     const [numberArray, setNumberArray] = useState([])
     const [range, setRange] = useState(50)
-    const [sortSpeed, setSortSpeed] = useState(5)
+    const [sortSpeed, setSortSpeed] = useState(10)
     const [sorting, setSorting] = useState(false)
     const [generateBtnState, setGenerateBtnState] = useState(false)
     const [modalView, setModalView] = useState(false)
@@ -87,6 +89,13 @@ const App = () => {
     const mergeSort = () => {
         let numbers = getArrayInRangeAndChangeState()
         const delay = MergeSortAlgo(numbers, sortSpeed)
+        setTimeout(() => setGenerateBtnState(false), delay)
+    }
+
+    // quick sort 
+    const quickSort = () => {
+        let numbers = getArrayInRangeAndChangeState()
+        const delay = QuickSortAlgo(numbers, sortSpeed)
         setTimeout(() => setGenerateBtnState(false), delay)
     }
 
@@ -169,6 +178,13 @@ const App = () => {
                                 onClick={() => mergeSort()}
                                 disabled={sorting}
                             >Merge Sort</button>
+
+                            {/* quick sort */}
+                            <button 
+                                style={algorithmButtonStyle}
+                                onClick={() => quickSort()}
+                                disabled={sorting}
+                            >Quick Sort</button>
                         </div>
                     }
                     

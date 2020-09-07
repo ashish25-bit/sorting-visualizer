@@ -8,6 +8,7 @@
     --comparisionColor: #ffff4f;
     --swapColor: #ed4646;
     --minIndexSelectionSort: #4747ad;
+    --pivotColorQuickSort: #ad4750;
 }
 
 body, button {
