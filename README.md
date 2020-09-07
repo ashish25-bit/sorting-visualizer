@@ -38,6 +38,13 @@ _Sorting Speed - 5ms_
 
 ---
 
+## QUICK SORT
+_Elements - 100_ <br/>
+_Sorting Speed - 10ms_
+![Quick Sort](./images/quicksort.gif)
+
+---
+
 <br/>
 
 **Height of the bars changes with the change in number of elements**
