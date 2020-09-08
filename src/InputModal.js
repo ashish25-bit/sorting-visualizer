@@ -4,7 +4,7 @@ import MarkNumber from './MarkNumber'
 import Bars from './Bars'
 
 Modal.setAppElement('#root')
-const InputModal = ({ view, closeModal, arrayAsInput, btnStyle }) => {
+const InputModal = ({ view, closeModal, arrayAsInput, btnStyle, backToNormal }) => {
 
     const modify = {
         margin: '0',
@@ -68,7 +68,14 @@ const InputModal = ({ view, closeModal, arrayAsInput, btnStyle }) => {
             <MarkNumber customStyle={{ display: 'flex' }} />
             <button style={btnStyleModified} onClick={() => closeModal()}>Cancel</button>
             <button style={btnStyleModified} onClick={() => confirmArray()}>Confirm Array</button>
-            <button style={btnStyleModified} onClick={() => setInputArray([])}>Clear Array</button>
+            <button style={btnStyleModified} 
+                onClick={
+                    () => { 
+                        setInputArray([]);
+                        backToNormal()
+                    }
+                }
+            >Clear Array</button>
             <small style={{ color: '#555' }}>Number Of Elements: {inputArray.length}</small>
         </Modal>
     )

@@ -10,7 +10,6 @@ import MarkNumber from './MarkNumber'
 import Bars from './Bars'
 
 const App = () => {
-    // 29, 69, 35, 14, 49, 10, 100, 12, 16, 68
     const [numberArray, setNumberArray] = useState([])
     const [range, setRange] = useState(50)
     const [sortSpeed, setSortSpeed] = useState(10)
@@ -110,6 +109,9 @@ const App = () => {
         setNumberArray(inputArray)
         console.log(inputArray)
     }
+
+    // clear input array and use the generated array
+    const backToNormal = () => generateArray() 
 
     return (
         <div style={{ width: '80%', margin: '0 auto' }}>
@@ -217,6 +219,7 @@ const App = () => {
                 closeModal={closeInputModal}
                 arrayAsInput={setArrayAsInput}
                 btnStyle={btnStyle}
+                backToNormal={backToNormal}
             />
         </div>
     );
