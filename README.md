@@ -45,6 +45,13 @@ _Sorting Speed - 10ms_
 
 ---
 
+## HEAP SORT
+_Elements - 100_ <br/>
+_Sorting Speed - 10ms_
+![Heap Sort](./images/heapsort.gif)
+
+---
+
 <br/>
 
 **Height of the bars changes with the change in number of elements**

@@ -5,6 +5,7 @@ import { selectionSortAlgo } from './algorithms/SelectionSort'
 import { insertionSortAlgo } from './algorithms/InsertionSort'
 import { MergeSortAlgo } from './algorithms/MergeSort'
 import { QuickSortAlgo } from './algorithms/QuickSort';
+import { HeapSortAlgo } from './algorithms/HeapSort'
 import InputModal from './InputModal'
 import MarkNumber from './MarkNumber'
 import Bars from './Bars'
@@ -58,7 +59,7 @@ const App = () => {
         setViewAlgoContainer(false)
         let numbers = numberArray
         if (inputArrayOn)
-            return numbers
+            return numbers.map(num => { return num })
         numbers = numbers.slice(0, range)
         return numbers
     }
@@ -95,6 +96,13 @@ const App = () => {
     const quickSort = () => {
         let numbers = getArrayInRangeAndChangeState()
         const delay = QuickSortAlgo(numbers, sortSpeed)
+        setTimeout(() => setGenerateBtnState(false), delay)
+    }
+
+    // heap sort
+    const heapSort = () => {
+        let numbers = getArrayInRangeAndChangeState()
+        const delay = HeapSortAlgo(numbers, sortSpeed)
         setTimeout(() => setGenerateBtnState(false), delay)
     }
 
@@ -187,6 +195,13 @@ const App = () => {
                                 onClick={() => quickSort()}
                                 disabled={sorting}
                             >Quick Sort</button>
+
+                            {/* heap sort */}
+                            <button 
+                                style={algorithmButtonStyle}
+                                onClick={() => heapSort()}
+                                disabled={sorting}
+                            >Heap Sort</button>
                         </div>
                     }
                     
