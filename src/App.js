@@ -6,6 +6,7 @@ import { insertionSortAlgo } from './algorithms/InsertionSort'
 import { MergeSortAlgo } from './algorithms/MergeSort'
 import { QuickSortAlgo } from './algorithms/QuickSort';
 import { HeapSortAlgo } from './algorithms/HeapSort'
+import { ShellSortAlgo } from './algorithms/ShellSort'
 import InputModal from './InputModal'
 import MarkNumber from './MarkNumber'
 import Bars from './Bars'
@@ -106,6 +107,13 @@ const App = () => {
         setTimeout(() => setGenerateBtnState(false), delay)
     }
 
+    // shell sort
+    const shellSort = () => {
+        let numbers = getArrayInRangeAndChangeState()
+        const delay = ShellSortAlgo(numbers, sortSpeed)
+        setTimeout(() => setGenerateBtnState(false), delay)
+    }
+
     // close the modal
     const closeInputModal = () => setModalView(false)
 
@@ -202,6 +210,13 @@ const App = () => {
                                 onClick={() => heapSort()}
                                 disabled={sorting}
                             >Heap Sort</button>
+
+                            {/* shell sort */}
+                            <button
+                                style={algorithmButtonStyle}
+                                onClick={() => shellSort()}
+                                disabled={sorting}
+                            >Shell Sort</button>
                         </div>
                     }
                     

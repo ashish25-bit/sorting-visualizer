@@ -52,6 +52,13 @@ _Sorting Speed - 10ms_
 
 ---
 
+## SHELL SORT
+_Elements - 100_ <br/>
+_Sorting Speed - 10ms_
+![Shell Sort](./images/shellsort.gif)
+
+---
+
 <br/>
 
 **Height of the bars changes with the change in number of elements**
