@@ -12,6 +12,7 @@ import {
     flex
 } from '../utils/exportStyles';
 import TraverseSLL from '../algorithms/linkedlist/TraverseSSL'
+import { Link } from 'react-router-dom';
 
 const SingleLinkedList = () => {
     // Single Linked List Data structure
@@ -44,8 +45,9 @@ const SingleLinkedList = () => {
     
     // state variables and refs
     const [nodes, setNodes] = useState([]);
-    const [number, setNumber] = useState(5)
-    const list = useRef(new LIST())
+    const [number, setNumber] = useState(5);
+    // const [engage, setEngage] = useState(false);
+    const list = useRef(new LIST());
 
     const generateLinkedList = useCallback(() => {
         setNodes([]);
@@ -57,6 +59,10 @@ const SingleLinkedList = () => {
     }, [number]);
 
     useEffect(() => generateLinkedList(), [generateLinkedList]);
+
+    const clickHandler = fun => {
+        fun(list.current)
+    }
 
     return (
         <div style={mainContainerLL}>
@@ -100,7 +106,8 @@ const SingleLinkedList = () => {
                     ))
                 }
             </div>
-            <button onClick={() => TraverseSLL(list.current)}>Traverse</button>
+            <button onClick={() => clickHandler(TraverseSLL)}>Traverse</button>
+            <Link to='/'>Array Sorting</Link>
         </div>
     );
 };
