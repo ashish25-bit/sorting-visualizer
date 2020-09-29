@@ -48,7 +48,7 @@ button {
     border-radius: 50%;
 }
 
-
+/* SORTING COMPONENT CSS */
 .bar_container {
     height: 685px;
     display: flex;
@@ -81,4 +81,46 @@ button {
     border-bottom: 1px #000 solid;
     border-right: 1px #000 solid;
     font-size: 10px;
+}
+
+
+/* LINKED LIST COMPONENT DESIGN */
+.linked-list-node-container {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    user-select: none;
+}
+.linked-list-node-container > div {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    background: var(--barColor);
+    display: flex;
+}
+.linked-list-node-container .data,
+.linked-list-node-container .next {
+    flex: 1;
+}
+.linked-list-node-container .next {
+    background: rgba(0,0,0,0.5);
+    position: relative;
+    top: -10px;
+    padding: 10px 0;
+    height: 100%;
+}
+.linked-list-node-container .next .next-img,
+.linked-list-node-container .next .null-img {
+    position: absolute;
+    width: 20px;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.linked-list-node-container .next .next-img {
+    right: -12px;
+}
+.linked-list-node-container .next .null-img {
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
