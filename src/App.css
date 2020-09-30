@@ -9,6 +9,10 @@
     --swapColor: #ed4646;
     --minIndexSelectionSort: #4747ad;
     --pivotColorQuickSort: #ad4750;
+    --nodeColor: #47e8ff;
+    --currentNode: #f73232;
+    --visitedNode: #76dd76;
+    --marginLeftCode: 20px;
 }
 
 body, button {
@@ -20,6 +24,9 @@ input, button {
 }
 button {
     cursor: pointer;
+}
+code {
+    user-select: none;
 }
 
 /* range slider */
@@ -95,7 +102,7 @@ button {
     flex: 1;
     text-align: center;
     padding: 10px 0;
-    background: var(--barColor);
+    background: var(--nodeColor);
     display: flex;
 }
 .linked-list-node-container .data,
@@ -123,4 +130,14 @@ button {
 .linked-list-node-container .next .null-img {
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+/* code boxes */
+code p {
+    font-size: 20px;
+    padding: 10px;
+    padding-left: calc(var(--i) * var(--marginLeftCode));
+}
+code p.active {
+    background-color: #b4b3b3b8;
 }

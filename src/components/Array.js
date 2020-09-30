@@ -17,6 +17,7 @@ import {
     btnContainerStyle,
     flex
 } from '../utils/exportStyles'
+import url from '../utils/url';
 import { Link } from 'react-router-dom';
 
 const Array = () => {
@@ -217,7 +218,7 @@ const Array = () => {
                 btnStyle={btnStyle}
                 backToNormal={backToNormal}
             />
-            <Link to='/linked-list'>Linked List Operations</Link>
+            <Link to={url.sLLTraversing}>Linked List Operations</Link>
         </div>
     );
 }
