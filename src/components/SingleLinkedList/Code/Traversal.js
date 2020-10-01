@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
 import {
     codeContainer,
-    comment,
     marginParam,
-    func,
-    variable,
-    ret,
-    keywords
+    speed
 } from '../../../utils/exportStyles';
+import keywords from '../../../utils/keywords';
 
 const Traversal = ({ current: { nodes, currentNode } }) => {
     const currentValue = currentNode < nodes.length ? nodes[currentNode].data : "null";
@@ -29,29 +26,21 @@ const Traversal = ({ current: { nodes, currentNode } }) => {
     return (
         <div style={codeContainer}>
             <code>
-                <p>{getSpan("function",keywords)} {getSpan("traversal",func)}(root) {`{`}</p>
-                
-                <p style={{
-                    ...marginParam(1),
-                    ...comment
-                }}>{`// root is ${nodes[0].data} here`}</p>
-
-                <p style={marginParam(1)}>{getSpan("let",keywords)} {getSpan("tempRoot",variable)} = root;</p>
-                
+                <p>
+                    {getSpan("function")} {getSpan("traversal")}{getSpan("(root)")} {'{'}
+                </p>
+                <p style={marginParam(1)}>{getComment(`// root is ${nodes[0].data} here`)}</p>
                 <p style={marginParam(1)}>
-                    {getSpan("while",keywords)} 
-                    ({getSpan("tempNode",variable)} !== 
-                    {getSpan("null", func)})
-                </p> 
-                
-                <p style={marginParam(2)}>{getSpan("tempNode",variable)} = {getSpan("tempNode",variable)}.next;</p>
-                
-                <p style={{
-                    ...marginParam(1),
-                    ...comment
-                }}>{`// tempNode is ${currentValue}.`}</p>
-                
-                <p style={marginParam(1)}>{getSpan("return;", ret)}</p>
+                    {getSpan("let")} {getSpan("temp")} = {getSpan("root")};
+                </p>
+                <p style={marginParam(1)}>
+                    {getSpan("while")} ({getSpan("tempNode")} !== {getSpan("null")})
+                </p>
+                <p style={marginParam(2)}>
+                    {getSpan("tempNode")} = {getSpan("tempNode")}.{getSpan("next")};
+                </p>
+                <p style={marginParam(1)}>{getComment(`// tempNode is at ${currentValue}`)}</p>
+                <p style={marginParam(1)}>{getSpan("return")};</p>
                 <p>{'}'}</p>
             </code>
         </div>
@@ -60,8 +49,13 @@ const Traversal = ({ current: { nodes, currentNode } }) => {
 
 export default Traversal;
 
-function getSpan(text,  style) {
-    return <span style={style}>{text}</span>
+function getSpan(property) {
+    let attr = keywords[property] ? keywords[property] : "variable" 
+    return <span attr={attr}>{property}</span>;
+}
+
+function getComment(comment) {
+    return <span attr="comment">{comment}</span>
 }
 
 async function currentPNodes(targetNodes) {
@@ -76,10 +70,10 @@ async function currentPNodes(targetNodes) {
 
     // classes are added here
     for (const index of targetNodes) {
-        await new Promise(resolve => 
-            setTimeout (() =>
+        await new Promise(resolve =>
+            window.setTimeout (() =>
                 resolve(nodes[index].classList.add('active'))
-            , 150)
+            , speed)
         )
     }
 }

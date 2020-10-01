@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import MethodHeader from './MethodHeader';
 import { bubbleSortAlgo } from '../algorithms/array/BubbleSort';
 import { selectionSortAlgo } from '../algorithms/array/SelectionSort';
 import { insertionSortAlgo } from '../algorithms/array/InsertionSort';
@@ -17,8 +18,6 @@ import {
     btnContainerStyle,
     flex
 } from '../utils/exportStyles'
-import url from '../utils/url';
-import { Link } from 'react-router-dom';
 
 const Array = () => {
 
@@ -98,6 +97,7 @@ const Array = () => {
 
     return (
         <div style={{ width: '80%', margin: '0 auto' }}>
+            <MethodHeader />
             <div style={flexContainer}>
                 <div style={flex}>
                     {/* range element */}
@@ -218,7 +218,6 @@ const Array = () => {
                 btnStyle={btnStyle}
                 backToNormal={backToNormal}
             />
-            <Link to={url.sLLTraversing}>Linked List Operations</Link>
         </div>
     );
 }

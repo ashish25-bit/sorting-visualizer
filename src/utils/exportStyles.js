@@ -52,7 +52,7 @@ export const controlBtnContainer = {
 
 export const codeContainer = {
     margin: '40px auto',
-    width: '60%'
+    width: '100%'
 };
 
 export const comment = {
@@ -65,17 +65,4 @@ export const marginParam = (index) => {
     }
 };
 
-export const func = {
-    color: "#a81010"
-};
-
-export const variable = {
-    color: '#1d4da0'
-};
-
-export const ret = {
-    color: "#601860"
-}
-export const keywords = {
-    color: '#3ba773'
-}
+export const speed = 150 

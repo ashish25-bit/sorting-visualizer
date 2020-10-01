@@ -13,6 +13,11 @@
     --currentNode: #f73232;
     --visitedNode: #76dd76;
     --marginLeftCode: 20px;
+    --keyword: #57107e;
+    --keyword2: #ff9800;
+    --variable: #a33434;
+    --comment: #6e6e6e;
+    --pointer: #229722;
 }
 
 body, button {
@@ -27,6 +32,33 @@ button {
 }
 code {
     user-select: none;
+}
+a {
+    text-decoration: none;
+}
+
+/* methods */
+.methods-container {
+    position: fixed;
+    left: 20px;
+    top: 10%;
+    display: flex;
+    width: 350px;
+}
+.methods-container button {
+    padding: 10px ;
+    border: 2px solid #000;
+    background: none;   
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+.methods-container a {
+    display: block;
+    font-size: 15px;
+    padding: 10px;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    background: #000;
 }
 
 /* range slider */
@@ -134,10 +166,25 @@ code {
 
 /* code boxes */
 code p {
-    font-size: 20px;
-    padding: 10px;
+    font-size: 15px;
+    padding: 5px 0;
     padding-left: calc(var(--i) * var(--marginLeftCode));
 }
 code p.active {
     background-color: #b4b3b3b8;
+}
+code span[attr="keyword"] {
+    color: var(--keyword);
+}
+code span[attr="variable"] {
+    color: var(--variable);
+} 
+code span[attr="comment"] {
+    color: var(--comment);
+}
+code span[attr="keyword2"] {
+    color: var(--keyword2);
+}
+code span[attr="pointer"] {
+    color: var(--pointer);
 }
