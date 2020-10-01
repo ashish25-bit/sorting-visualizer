@@ -65,4 +65,4 @@ export const marginParam = (index) => {
     }
 };
 
-export const speed = 150 
+export const speed = 75

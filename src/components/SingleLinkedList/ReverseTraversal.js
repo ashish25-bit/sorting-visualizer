@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
-import StepsController from '../StepsController'
-import TraversalCode from './Code/Traversal';
-import { TraverseSLL, backToNormal } from '../../algorithms/linkedlist/TraverseSSL';
+import StepsController from '../StepsController';
+import ReverseTraversalCode from './Code/ReverseTraversal'
+import { backToNormal, reverseTraversalSLL } from '../../algorithms/linkedlist/TraverseSSL';
 
-const TraversalSLL = ({
+function ReverseTraversal({
     nodes,
     currentNode,
     setCurrentNode,
     setEngage
-}) => {
+}) {
 
     // cancel operation
     const cancelOperation = () => {
@@ -23,7 +23,7 @@ const TraversalSLL = ({
         if (data === -1) 
             backToNormal(currentNode, nodes.length);
         let temp = currentNode + data;
-        TraverseSLL(temp);
+        reverseTraversalSLL(temp);
         setCurrentNode(prevState => prevState + data);
     }
 
@@ -35,9 +35,9 @@ const TraversalSLL = ({
                 controller={controller}
                 cancelOperation={cancelOperation}
             />
-            <TraversalCode current={{nodes, currentNode}} />
+            <ReverseTraversalCode current={{nodes, currentNode}} />
         </Fragment>
-    );
-};
+    )
+}
 
-export default TraversalSLL;
+export default ReverseTraversal

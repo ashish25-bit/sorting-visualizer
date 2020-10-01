@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
-import {
-    codeContainer,
-    marginParam,
-    speed
-} from '../../../utils/exportStyles';
+import { codeContainer, marginParam, speed } from '../../../utils/exportStyles';
 import keywords from '../../../utils/keywords';
 
-const Traversal = ({ current: { nodes, currentNode } }) => {
+const Traversal = ({ current: { nodes, currentNode }}) => {
     const currentValue = currentNode < nodes.length ? nodes[currentNode].data : "null";
 
     useEffect(() => {

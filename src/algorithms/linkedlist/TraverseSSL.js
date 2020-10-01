@@ -14,6 +14,10 @@ export const TraverseSLL = index => {
     }
 }
 
+export const reverseTraversalSLL = index => {
+    console.log(index)
+}
+
 export const backToNormal = (index, length) => {
     for (let i=index; i<length; i++) 
         changeNodeColor({ index: i, color: "var(--nodeColor)" });

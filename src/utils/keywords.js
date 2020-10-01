@@ -10,6 +10,8 @@ export default {
     return: keyword,
     while: keyword,
     for: keyword,
+    console: keyword,
+    log: keyword,
     null: keyword2,
     undefined: keyword,
     if: keyword,
