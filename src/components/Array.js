@@ -93,7 +93,9 @@ const Array = () => {
     }
 
     // clear input array and use the generated array
-    const backToNormal = () => generateArray() 
+    const backToNormal = () => generateArray();
+
+    const customBtnStyle = generateBtnState ? {...btnStyle, opacity: '0.5'} : btnStyle;
 
     return (
         <div style={{ width: '80%', margin: '0 auto' }}>
@@ -127,7 +129,7 @@ const Array = () => {
 
                     {/* select the algorithm */}
                     <button
-                        style={btnStyle}
+                        style={customBtnStyle}
                         disabled={sorting}
                         onClick={() => setViewAlgoContainer(prevState => !prevState)}
                     >Select Algorithm</button>
@@ -189,14 +191,14 @@ const Array = () => {
                     
                     {/* generating new array */}
                     <button
-                        style={btnStyle}
+                        style={customBtnStyle}
                         onClick={() => { generateArray(); setViewAlgoContainer(false)}}
                         disabled={generateBtnState}
                     >Generate New Array</button>
 
                     {/* button for input */}
                     <button 
-                        style={btnStyle}
+                        style={customBtnStyle}
                         onClick={() => setModalView(true)}
                         disabled={generateBtnState}
                     >Input Elements</button>

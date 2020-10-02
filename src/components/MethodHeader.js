@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import url from '../utils/url';
 
+
 const MethodHeader = () => {
 
     const [isOpen, setIsOpen] = useState(false)
@@ -11,7 +12,9 @@ const MethodHeader = () => {
             <div> 
                 <button 
                     onClick={() => setIsOpen(prevState => !prevState)}
-                >Methods</button> 
+                >
+                    <img width="30px" src={require('../assets/arrow_back.png')} alt="back arrow" />
+                </button> 
             </div>
             {
                 isOpen && 

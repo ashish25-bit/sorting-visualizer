@@ -4,7 +4,7 @@ import ButtonLL from '../components/ButtonLL'
 import NodeLL from '../components/NodeLL';
 import Traversal from '../components/SingleLinkedList/Traversal';
 import ReverseTraversal from '../components/SingleLinkedList/ReverseTraversal'
-import { mainContainerLL } from '../utils/exportStyles';
+import { mainContainerLL, flexContainer, llBtnStyle } from '../utils/exportStyles';
 import { TraverseSLL } from '../algorithms/linkedlist/TraverseSSL';
 
 const SLLTraversal = () => {
@@ -77,6 +77,8 @@ const SLLTraversal = () => {
         }
     }
 
+    const customBtnStyle = engage ? {...llBtnStyle, opacity: "0.5"} : llBtnStyle;
+
     return (
         <div style={mainContainerLL}>
             <MethodHeader />
@@ -91,14 +93,16 @@ const SLLTraversal = () => {
                 linkedList={0}
             />
 
-            <div>
+            <div style={{...flexContainer, gap: "10px"}}>
                 <button
                     onClick={() => clickHandler(0)}
                     disabled={engage}
+                    style={customBtnStyle}
                 >Traverse</button>
                 <button
                     onClick={() => clickHandler(1)}
                     disabled={engage}
+                    style={customBtnStyle}
                 >Reverse Traversal</button>
             </div>
 

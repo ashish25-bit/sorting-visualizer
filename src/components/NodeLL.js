@@ -21,10 +21,7 @@ const NodeLL = ({ nodes, linkedList }) => {
                         className="linked-list-node"
                         >
                             <div className="data">{data}</div>
-                            <div className='next'>{ index !== nodes.length -1 ? 
-                                returnImageElement0("next.png", "next-img", "next-node") :
-                                returnImageElement0("null.png", "null-img", "null-node")
-                            }</div>
+                            { index !== nodes.length -1 && returnImageElement0("next2.png", "next-img", "next-node") }
                         </div>
                     </Fragment>
                 ))

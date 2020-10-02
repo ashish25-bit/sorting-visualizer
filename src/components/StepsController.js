@@ -1,5 +1,4 @@
 import React from 'react';
-import { controlBtnContainer } from '../utils/exportStyles';
 
 const StepsController = ({ 
     currentNode,
@@ -8,7 +7,7 @@ const StepsController = ({
     cancelOperation
 }) => {
     return (
-        <div style={controlBtnContainer}>
+        <div className="controlBtnContainer">
             <button 
                 onClick={() => controller(-1)}
                 disabled={currentNode === 0}

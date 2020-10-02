@@ -3,7 +3,8 @@ export const algorithmButtonStyle = {
     background: 'none',
     borderBottom: '1px solid #ccc',
     borderRadius: '5px',
-    width:"100%"
+    width:"100%",
+    color: "#000"
 };
 
 export const flexContainer = {
@@ -14,7 +15,8 @@ export const btnStyle = {
     margin: '0 10px',
     border: 'none',
     background: 'none',
-    borderBottom: '1px #ccc solid'
+    borderBottom: '1px #ccc solid',
+    color: "#fff"
 };
 
 export const inputTime = {
@@ -45,11 +47,6 @@ export const flex = {
     flex: "1"
 };
 
-export const controlBtnContainer = {
-    textAlign: 'center',
-    margin: "10px 0"
-}
-
 export const codeContainer = {
     margin: '40px auto',
     width: '100%'
@@ -65,4 +62,11 @@ export const marginParam = (index) => {
     }
 };
 
-export const speed = 75
+export const speed = 75;
+
+export const llBtnStyle = {
+    flex: '1',
+    background: "initial",
+    padding: '10px 0',
+    textTransform: "uppercase"
+}

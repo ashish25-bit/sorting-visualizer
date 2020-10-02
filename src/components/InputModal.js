@@ -12,8 +12,9 @@ const InputModal = ({ view, closeModal, arrayAsInput, btnStyle, backToNormal }) 
     }
 
     const btnStyleModified = {
-        ...btnStyle, 
-        ...modify
+        ...btnStyle,
+        ...modify,
+        color: '#000'
     }
 
     const [number, setNumber] = useState(5)
@@ -89,7 +90,8 @@ const inputStyle = {
 const addBtnStyle = {
     width: 'calc(15% - 15px)',
     padding: '5px 0',
-    border: 'none'
+    border: 'none',
+    color: '#000'
 }
 
 export default InputModal
