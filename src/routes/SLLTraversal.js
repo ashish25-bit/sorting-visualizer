@@ -5,7 +5,7 @@ import NodeLL from '../components/NodeLL';
 import Traversal from '../components/SingleLinkedList/Traversal';
 import ReverseTraversal from '../components/SingleLinkedList/ReverseTraversal'
 import { mainContainerLL, flexContainer, llBtnStyle } from '../utils/exportStyles';
-import { TraverseSLL } from '../algorithms/linkedlist/TraverseSSL';
+import { TraverseSLL, reverseTraversalSLL } from '../algorithms/linkedlist/TraverseSSL';
 
 const SLLTraversal = () => {
     // Single Linked List Data structure
@@ -70,7 +70,7 @@ const SLLTraversal = () => {
                 TraverseSLL(0);
                 break;
             case 1: 
-                console.log('Reverse traversal');
+                reverseTraversalSLL(0);
                 break;
             default: 
                 return;

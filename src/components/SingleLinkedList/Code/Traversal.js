@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { codeContainer, marginParam, speed } from '../../../utils/exportStyles';
+import { codeContainer, marginParam } from '../../../utils/exportStyles';
 import keywords from '../../../utils/keywords';
+import { currentPNodes } from '../../../algorithms/linkedlist/HelperFuntion';
 
 const Traversal = ({ current: { nodes, currentNode }}) => {
     const currentValue = currentNode < nodes.length ? nodes[currentNode].data : "null";
@@ -52,24 +53,4 @@ function getSpan(property) {
 
 function getComment(comment) {
     return <span attr="comment">{comment}</span>
-}
-
-async function currentPNodes(targetNodes) {
-    const nodes = document.querySelectorAll('code p');
-
-    // classes are removed here
-    if (targetNodes === null) {
-        for (const node of nodes) 
-            node.classList.remove('active')
-        return;
-    }
-
-    // classes are added here
-    for (const index of targetNodes) {
-        await new Promise(resolve =>
-            window.setTimeout (() =>
-                resolve(nodes[index].classList.add('active'))
-            , speed)
-        )
-    }
 }

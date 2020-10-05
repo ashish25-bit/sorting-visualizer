@@ -18,5 +18,6 @@ export default {
     else: keyword,
     "else if": keyword,
     next: pointerVariable,
-    prev: pointerVariable
+    prev: pointerVariable,
+    data: pointerVariable
 };

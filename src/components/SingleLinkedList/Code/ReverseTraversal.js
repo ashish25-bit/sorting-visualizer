@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { codeContainer, marginParam } from '../../../utils/exportStyles';
 import keywords from '../../../utils/keywords';
+import { currentPNodes } from '../../../algorithms/linkedlist/HelperFuntion';
 
-const ReverseTraversal = ({ current: { nodes, currentNode }}) => {
+const ReverseTraversal = ({ current: { nodes, currentNode, arrayIndex }}) => {
     const currentValue = currentNode < nodes.length ? nodes[currentNode].data : "null";
+
+    useEffect(() => {
+        // removing the classes from the code nodes 
+        currentPNodes(null);
+
+        let targetNodes = [];
+        if (arrayIndex >= 0 && arrayIndex < nodes.length)
+            targetNodes = [4];
+        else if (arrayIndex === nodes.length)
+            targetNodes = [2, 3];
+        else 
+            targetNodes = [4, 5];
+        currentPNodes(targetNodes);
+    }, [arrayIndex, nodes]);
+
     return (
         <div style={codeContainer}>
             <code>
                 <p>
                     {getSpan("function")} {getSpan("reverseTraversal")} ({getSpan("root")}) {'{'}
                 </p>
-                <p style={marginParam(1)}>{getComment(`// root is ${currentValue} now`)}</p>
+                {
+                    arrayIndex <= nodes.length &&
+                    <p style={marginParam(1)}>{getComment(`// root is ${currentValue} now`)}</p>
+                }
                 <p style={marginParam(1)}>
                     {getSpan("if")} ({getSpan("head")} === {getSpan("null")}) 
                 </p>
@@ -19,8 +38,12 @@ const ReverseTraversal = ({ current: { nodes, currentNode }}) => {
                     {getSpan("reverseTraversal")}({getSpan("root")}.{getSpan("next")});
                 </p>
                 <p style={marginParam(1)}>
-                    {getSpan("console")}.{getSpan("log")}({getSpan("root")}.{getSpan("next")});
+                    {getSpan("console")}.{getSpan("log")}({getSpan("root")}.{getSpan("data")});
                 </p>
+                {
+                    arrayIndex > nodes.length &&
+                    <p style={marginParam(1)}>{getComment(`// ${currentValue} gets print`)}</p>
+                }
                 <p>{'}'}</p>
             </code>
         </div>
