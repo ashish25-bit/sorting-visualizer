@@ -57,6 +57,24 @@ a {
     text-decoration: none;
 }
 
+/* home page */
+.home-page {
+    width: 80%;
+    margin: 30px auto;
+}
+.home-page a {
+    color: #fff;
+    outline: none;
+}
+.home-page a span {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+.home-page img {
+    box-shadow: 0 0 1px #eee;
+    width: 100%;
+}
+
 /* methods */
 .methods-container {
     position: fixed;

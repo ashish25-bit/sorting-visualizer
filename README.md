@@ -1,4 +1,4 @@
-# SORTING VISUALIZER
+# DATA STRUCTURE VISUALIZER
 
 > This is a react application which visualizes some array sorting algorithms
 
@@ -8,7 +8,12 @@
 ```console
     npx create-react-app .
     npm install react-modal
+    npm install react-router-dom
 ```
+
+## VISUALIZATION:
+* Linked List Traversal
+* Sorting Algorithms
 
 ## BUBBLE SORT
 _Elements - 50_ <br/>

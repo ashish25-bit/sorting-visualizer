@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import Array from '../components/Array';
 
-const Sort = () => { return <Array /> }
+const Sort = () => {
+    useLayoutEffect(() => { document.title = "Sorting Algorithms" }, []) 
+    return <Array /> 
+}
 
-export default Sort
+export default Sort;

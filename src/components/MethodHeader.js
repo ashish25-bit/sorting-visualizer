@@ -19,7 +19,8 @@ const MethodHeader = () => {
             {
                 isOpen && 
                 <div style={{ flex:"2" }}>
-                    <Link to={url.main}>Sorting</Link>
+                    <Link to={url.main}>Home</Link>
+                    <Link to={url.sort}>Sorting</Link>
                     <Link to={url.sLLTraversing}>Single Linked List Traversal</Link>
                 </div>
             }

@@ -69,4 +69,11 @@ export const llBtnStyle = {
     background: "initial",
     padding: '10px 0',
     textTransform: "uppercase"
+};
+
+export const gridContainer = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
+    gridGap: "50px",
+    margin: "30px 0"
 }

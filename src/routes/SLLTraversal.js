@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useLayoutEffect } from 'react';
 import MethodHeader from '../components/MethodHeader';
 import ButtonLL from '../components/ButtonLL'
 import NodeLL from '../components/NodeLL';
@@ -8,6 +8,9 @@ import { mainContainerLL, flexContainer, llBtnStyle } from '../utils/exportStyle
 import { TraverseSLL, reverseTraversalSLL } from '../algorithms/linkedlist/TraverseSSL';
 
 const SLLTraversal = () => {
+
+    useLayoutEffect(() => { document.title="Single Linked List Traversal" } , [])
+
     // Single Linked List Data structure
     // Making the node
     const Node = class {
