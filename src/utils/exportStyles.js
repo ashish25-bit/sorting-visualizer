@@ -76,4 +76,10 @@ export const gridContainer = {
     gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
     gridGap: "50px",
     margin: "30px 0"
+};
+
+export const selectElement = {
+    padding: "12.5px 10px",
+    background: "var(--backgroundColor)",
+    color: "#fff"
 }

@@ -1,15 +1,13 @@
 import React, { useState, useRef, useEffect, useCallback, useLayoutEffect } from 'react';
 import MethodHeader from '../components/MethodHeader';
-import ButtonLL from '../components/ButtonLL'
+import ButtonLL from '../components/ButtonLL';
 import NodeLL from '../components/NodeLL';
-import Traversal from '../components/SingleLinkedList/Traversal';
-import ReverseTraversal from '../components/SingleLinkedList/ReverseTraversal'
-import { mainContainerLL, flexContainer, llBtnStyle } from '../utils/exportStyles';
-import { TraverseSLL, reverseTraversalSLL } from '../algorithms/linkedlist/TraverseSSL';
+import InsertBegin from '../components/SingleLinkedList/InsertBegin';
+import { mainContainerLL, flexContainer, llBtnStyle, selectElement } from '../utils/exportStyles';
 
-const SLLTraversal = () => {
+const SLLInsertion = () => {
 
-    useLayoutEffect(() => { document.title="Single Linked List Traversal" } , [])
+    useLayoutEffect(() => { document.title="Single Linked List Insertion" } , []);
 
     // Single Linked List Data structure
     // Making the node
@@ -38,16 +36,16 @@ const SLLTraversal = () => {
             return newNode;
         }
     };
-    
+
     // state variables and refs
     const [nodes, setNodes] = useState([]);
     const [engage, setEngage] = useState(false);
     const [number, setNumber] = useState(5);
-    const [currentNode, setCurrentNode] = useState(-1);
     const [currentAlgo, setCurrentAlgo] = useState(-1);
     /**
-     * 0 -> single linked list traversal
-     * 1 -> single linked list reverse traversal
+     * 0 -> insertion at the beginning
+     * 1 -> insertion at the end
+     * 2 -> insertion at a position
      */
     const list = useRef(new LIST());
 
@@ -64,16 +62,15 @@ const SLLTraversal = () => {
     useEffect(() => generateLinkedList(), [generateLinkedList]);
 
     const clickHandler = data => {
-        setEngage(true)
-        setCurrentNode(0)
+        setEngage(true);
         setCurrentAlgo(data);
-        
+
         switch (data) {
             case 0: 
-                TraverseSLL(0);
                 break;
             case 1: 
-                reverseTraversalSLL(0);
+                break;
+            case 2: 
                 break;
             default: 
                 return;
@@ -90,48 +87,73 @@ const SLLTraversal = () => {
                 setNumber={setNumber}
                 engage={engage}
                 generateLinkedList={generateLinkedList}
-                range={[5, 10]}
+                range={[5, 9]}
             />
             <NodeLL
                 nodes={nodes}
                 linkedList={0}
             />
 
-            <div style={{...flexContainer, gap: "10px"}}>
-                <button
-                    onClick={() => clickHandler(0)}
-                    disabled={engage}
-                    style={customBtnStyle}
-                >Traverse</button>
-                <button
-                    onClick={() => clickHandler(1)}
-                    disabled={engage}
-                    style={customBtnStyle}
-                >Reverse Traversal</button>
-            </div>
-
-            {/* List Traversal */}
-            { 
-                engage && !currentAlgo &&
-                <Traversal
-                    nodes={nodes}
-                    currentNode={currentNode}
-                    setCurrentNode={setCurrentNode}
-                    setEngage= {setEngage}
+            {/* insertion at the beginning */}
+            {
+                engage && currentAlgo === 0 &&
+                <InsertBegin 
+                    setEngage= {setEngage} 
+                    firstNode={nodes[0].data}
                 />
             }
             
-            {/* List Reverse Traversal */}
-            { engage && !!currentAlgo && 
-                <ReverseTraversal
-                    nodes={nodes}
-                    currentNode={currentNode}
-                    setCurrentNode={setCurrentNode}
-                    setEngage= {setEngage}
-                /> 
+            {/* insertion at the end */}
+            {
+                engage && currentAlgo === 1 && 
+                <h1>Insert At the end</h1>
             }
+            
+            {/* insertion at a porition */}
+            {
+                engage && currentAlgo === 2 && 
+                <h1>Insert At A Position</h1>
+            }
+
+            <div style={{...flexContainer, gap: "10px"}}>
+                {/* insertion at the beginning */}
+                <button 
+                    style={customBtnStyle}
+                    disabled={engage}
+                    onClick={() => clickHandler(0)}
+                >Insertion at the front</button>
+
+                {/* insertion at the end */}
+                <button 
+                    style={customBtnStyle}
+                    disabled={engage}
+                    onClick={() => clickHandler(1)}
+                >Insert at the end</button>
+
+                {/* insertion at a position */}
+                <div style={{ flex:"1" }}>
+                    <button 
+                        style={{
+                            ...customBtnStyle,
+                            display: "inline-block",
+                            width: "calc(100% - 52px)"
+                        }}
+                        disabled={engage}
+                        onClick={() => clickHandler(2)}
+                    >Insert at a position</button>
+                    
+                    {/* <input style={selectElement} type="number" id="quantity" name="quantity" min="1" max="5"></input> */}
+                    <select 
+                        style={selectElement}
+                        disabled={engage}
+                    >{
+                        [...Array(number).keys()].map(num => <option key={num}>{num}</option>)
+                    }</select>
+                </div>
+            </div>
+
         </div>
     )
 }
 
-export default SLLTraversal;
+export default SLLInsertion

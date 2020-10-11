@@ -17,6 +17,7 @@
     --currentNode: #f73232;
     --visitedNode: #1b941b;
     --pendingNode: #a4a44d;
+    --newnode: #2c2166;
     /* linked list node */
 
     /* linked list code */
@@ -30,6 +31,7 @@
     --variable: #eb3c3c;
     --comment: #6e6e6e;
     --pointer: #229722;
+    --className: #d98f33;
     /* language keyword color */
     
     --sliderThumb: #597CFA;
@@ -49,6 +51,7 @@ input, button {
 button {
     cursor: pointer;
     color: #fff;
+    user-select: none;
 }
 code {
     user-select: none;
@@ -170,30 +173,31 @@ a {
     display: flex;
     gap: 10px;
     margin: 20px 0;
-    user-select: none;
 }
 .linked-list-node {
     position: relative;
-}
-.linked-list-node-container > div {
     flex: 1;
     text-align: center;
     padding: 10px 0;
     background: var(--nodeColor);
     display: flex;
+    user-select: none;
 }
-.linked-list-node-container .data,
-.linked-list-node-container .next {
+.linked-list-node .data,
+.linked-list-node .next {
     flex: 1;
 }
-.linked-list-node-container .next-img,
-.linked-list-node-container .null-img {
+.linked-list-node .next-img,
+.linked-list-node .null-img {
     position: absolute;
     width: 28px;
     z-index: 10;
     top: 50%;
     transform: translateY(-50%);
     right: -15px;
+}
+.linked-list-node.newnode {
+    background: var(--newnode);
 }
 
 /* code boxes */
@@ -213,6 +217,7 @@ code span[attr="variable"] {
 } 
 code span[attr="comment"] {
     color: var(--comment);
+    font-style: italic;
 }
 code span[attr="keyword2"] {
     color: var(--keyword2);
@@ -220,6 +225,10 @@ code span[attr="keyword2"] {
 code span[attr="pointer"] {
     color: var(--pointer);
 }
+code span[attr="className"] {
+    color: var(--className);
+}
+
 
 .controlBtnContainer {
     text-align: center;

@@ -3,6 +3,7 @@ import './App.css';
 import Home from './routes/Home';
 import Sort from './routes/Sort';
 import SLLTraversal from './routes/SLLTraversal';
+import SLLInsertion from './routes/SLLInsertion';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import url from './utils/url'
 
@@ -13,6 +14,7 @@ function App() {
                 <Route exact path={url.main} component={Home} />
                 <Route exact path={url.sort} component={Sort} />
                 <Route exact path={url.sLLTraversing} component={SLLTraversal} />
+                <Route exact path={url.sLLInsertion} component={SLLInsertion} />
             </Switch>
 
         </Router>

@@ -12,5 +12,11 @@ export const home = [
         name: "Single Linked List Traversal",
         src: require('../assets/linkedList.gif'),
         alt: "linked-list-img"
+    },
+    {
+        url: url.sLLInsertion,
+        name: "Single Linked List Insertion",
+        src: require('../assets/linkedList.gif'),
+        alt: "linked-list-img"
     }
 ];
