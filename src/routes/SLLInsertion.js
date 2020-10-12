@@ -4,6 +4,7 @@ import ButtonLL from '../components/ButtonLL';
 import NodeLL from '../components/NodeLL';
 import InsertBegin from '../components/SingleLinkedList/InsertBegin';
 import { mainContainerLL, flexContainer, llBtnStyle, selectElement } from '../utils/exportStyles';
+import { insertBeginSLL } from '../algorithms/linkedlist/InsertionSLL';
 
 const SLLInsertion = () => {
 
@@ -47,6 +48,7 @@ const SLLInsertion = () => {
      * 1 -> insertion at the end
      * 2 -> insertion at a position
      */
+    const [newNode, setNewNode] = useState(null);
     const list = useRef(new LIST());
 
     // for generating random valued linked list nodes
@@ -64,9 +66,12 @@ const SLLInsertion = () => {
     const clickHandler = data => {
         setEngage(true);
         setCurrentAlgo(data);
+        const num = Math.floor(Math.random() * 50) + 1;
+        setNewNode(num);
 
         switch (data) {
             case 0: 
+                insertBeginSLL(num);
                 break;
             case 1: 
                 break;
@@ -100,6 +105,7 @@ const SLLInsertion = () => {
                 <InsertBegin 
                     setEngage= {setEngage} 
                     firstNode={nodes[0].data}
+                    newNode={newNode}
                 />
             }
             
@@ -142,7 +148,6 @@ const SLLInsertion = () => {
                         onClick={() => clickHandler(2)}
                     >Insert at a position</button>
                     
-                    {/* <input style={selectElement} type="number" id="quantity" name="quantity" min="1" max="5"></input> */}
                     <select 
                         style={selectElement}
                         disabled={engage}

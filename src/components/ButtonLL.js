@@ -14,7 +14,7 @@ const ButtonLL = ({ number, engage, setNumber, generateLinkedList, range }) => {
                     max={range[1]} 
                     value={number}
                     className="slider" 
-                    onChange={e => setNumber(e.target.value)}
+                    onChange={e => setNumber(parseInt(e.target.value))}
                     disabled={engage}
                 />{' '}
                 <label style={{ fontSize: '12px' }}>{number} Elements</label>

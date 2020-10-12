@@ -1,39 +1,32 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import StepsController from '../StepsController';
 import InsertBeginCode from './Code/InsertBegin';
+import { backToNormal, InsertBeginController } from '../../algorithms/linkedlist/InsertionSLL';
+import { changeNodeColor } from '../../algorithms/linkedlist/HelperFuntion';
 
-const InsertBegin = ({ setEngage, firstNode }) => {
-
+const InsertBegin = ({ setEngage, firstNode, newNode }) => {
+    
     const [currentStep, setCurrentStep] = useState(0);
-    const [newNode, setNewNode] = useState(null);
     const totalSteps = 3;
-
+    
     // cancel operation
     const cancelOperation = () => {
+        const parent = document.querySelector('.linked-list-node-container');
+        parent.removeChild(parent.childNodes[0]);
+        changeNodeColor({ index: 0, color: "var(--nodeColor)" });
         setEngage(false);
     }
 
     const controller = data => {
+        let temp = currentStep + data;
+        if (data === -1)
+            backToNormal(0, temp);
+        InsertBeginController(temp);
         setCurrentStep(prevState => prevState + data);
-
     }
 
-    useEffect(() => {
-        const num = Math.floor(Math.random() * 50) + 1;
-        setNewNode(num);
-    }, [])
-    
     return (
         <Fragment>
-            {
-                <div 
-                    className="linked-list-node newnode"
-                    style={{ width: '50px' }}
-                    title="New Node"
-                >
-                    <div className="data">{newNode}</div>
-                </div>
-            }
             <StepsController
                 currentNode={currentStep}
                 length={totalSteps}

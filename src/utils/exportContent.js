@@ -16,7 +16,7 @@ export const home = [
     {
         url: url.sLLInsertion,
         name: "Single Linked List Insertion",
-        src: require('../assets/linkedList.gif'),
+        src: require('../assets/insert-begin.gif'),
         alt: "linked-list-img"
     }
 ];
