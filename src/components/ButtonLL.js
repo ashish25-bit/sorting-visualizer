@@ -1,17 +1,20 @@
 import React from 'react';
 import { flexContainer, flex, btnStyle } from '../utils/exportStyles'
 
-const ButtonLL = ({ number, engage, setNumber, generateLinkedList }) => {
+const ButtonLL = ({ number, engage, setNumber, generateLinkedList, range }) => {
+
+    const customBtnStyle = engage ? {...btnStyle, opacity: 0.5} : btnStyle;
+
     return (
         <div style={flexContainer}>
             <div style={flex}>
                 <input
                     type="range" 
-                    min="5" 
-                    max="10" 
+                    min={range[0]} 
+                    max={range[1]} 
                     value={number}
                     className="slider" 
-                    onChange={e => setNumber(e.target.value)}
+                    onChange={e => setNumber(parseInt(e.target.value))}
                     disabled={engage}
                 />{' '}
                 <label style={{ fontSize: '12px' }}>{number} Elements</label>
@@ -19,7 +22,7 @@ const ButtonLL = ({ number, engage, setNumber, generateLinkedList }) => {
 
             <div style={flex}>
                 <button
-                    style={btnStyle}
+                    style={customBtnStyle}
                     onClick={() => generateLinkedList()}
                     disabled={engage}
                 >Generate Linked List</button>

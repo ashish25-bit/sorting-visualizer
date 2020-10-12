@@ -90,6 +90,7 @@ const SLLTraversal = () => {
                 setNumber={setNumber}
                 engage={engage}
                 generateLinkedList={generateLinkedList}
+                range={[5, 10]}
             />
             <NodeLL
                 nodes={nodes}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import url from '../utils/url';
-
+import { home } from '../utils/exportContent';
 
 const MethodHeader = () => {
 
@@ -20,8 +20,7 @@ const MethodHeader = () => {
                 isOpen && 
                 <div style={{ flex:"2" }}>
                     <Link to={url.main}>Home</Link>
-                    <Link to={url.sort}>Sorting</Link>
-                    <Link to={url.sLLTraversing}>Single Linked List Traversal</Link>
+                    { home.map(({ url, name }, index) => <Link key={index} to={url} >{name}</Link> )}
                 </div>
             }
         </div>

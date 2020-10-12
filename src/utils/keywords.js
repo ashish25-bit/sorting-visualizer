@@ -1,6 +1,7 @@
 const keyword = 'keyword';
 const keyword2 = 'keyword2';
-const pointerVariable = "pointer"
+const pointerVariable = "pointer";
+const className = "className"
 
 export default {
     let: keyword,
@@ -16,8 +17,10 @@ export default {
     undefined: keyword,
     if: keyword,
     else: keyword,
+    new: keyword,
     "else if": keyword,
     next: pointerVariable,
     prev: pointerVariable,
-    data: pointerVariable
+    data: pointerVariable,
+    Node: className
 };
