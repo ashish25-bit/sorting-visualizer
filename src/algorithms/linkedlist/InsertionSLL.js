@@ -43,13 +43,13 @@ export const InsertBeginController = step => {
     switch (step) {
         case 1:
             if (firstElement.childNodes.length === 1) {
-                const img = getImgElement("next2.png", "next node pointer", "next-img");
+                const img = getImgElement("next.png", "next node pointer", "next-img");
                 firstElement.appendChild(img);
             }
             break;
         case 2: 
             if (firstElement.childNodes.length === 1) {
-                const img = getImgElement("next2.png", "next node pointer", "next-img");
+                const img = getImgElement("next.png", "next node pointer", "next-img");
                 firstElement.appendChild(img);
             }
             changeNodeColor({ index: 1, color: "var(--nodeColor)" });
