@@ -20,7 +20,7 @@ const InsertBegin = ({ setEngage, firstNode, newNode }) => {
     const controller = data => {
         let temp = currentStep + data;
         if (data === -1)
-            backToNormal(0, temp);
+            backToNormal({ type: 0, current: temp });
         InsertBeginController(temp);
         setCurrentStep(prevState => prevState + data);
     }

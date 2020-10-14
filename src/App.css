@@ -18,7 +18,7 @@
     --visitedNode: #1b941b;
     --pendingNode: #a4a44d;
     --newnode: #ff7600;
-    --headNode: #fa4242;
+    --headNode: #17005e;
     /* linked list node */
 
     /* linked list code */
@@ -189,13 +189,16 @@ a {
     flex: 1;
 }
 .linked-list-node .next-img,
-.linked-list-node .null-img {
+.linked-list-node .next-img-f {
     position: absolute;
     width: 28px;
     z-index: 10;
     top: 50%;
     transform: translateY(-50%);
     right: -15px;
+}
+.linked-list-node .next-img-f {
+    left: -23px;
 }
 .linked-list-node.newnode {
     background: var(--newnode);

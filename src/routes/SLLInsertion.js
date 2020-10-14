@@ -3,8 +3,9 @@ import MethodHeader from '../components/MethodHeader';
 import ButtonLL from '../components/ButtonLL';
 import NodeLL from '../components/NodeLL';
 import InsertBegin from '../components/SingleLinkedList/InsertBegin';
+import InsertEnd from '../components/SingleLinkedList/InsertEnd';
 import { mainContainerLL, flexContainer, llBtnStyle, selectElement } from '../utils/exportStyles';
-import { insertBeginSLL } from '../algorithms/linkedlist/InsertionSLL';
+import { insertBeginSLL, insertEndSLL } from '../algorithms/linkedlist/InsertionSLL';
 
 const SLLInsertion = () => {
 
@@ -73,7 +74,8 @@ const SLLInsertion = () => {
             case 0: 
                 insertBeginSLL(num);
                 break;
-            case 1: 
+            case 1:
+                insertEndSLL(num);
                 break;
             case 2: 
                 break;
@@ -103,7 +105,7 @@ const SLLInsertion = () => {
             {
                 engage && currentAlgo === 0 &&
                 <InsertBegin 
-                    setEngage= {setEngage} 
+                    setEngage={setEngage}
                     firstNode={nodes[0].data}
                     newNode={newNode}
                 />
@@ -112,7 +114,10 @@ const SLLInsertion = () => {
             {/* insertion at the end */}
             {
                 engage && currentAlgo === 1 && 
-                <h1>Insert At the end</h1>
+                <InsertEnd
+                    setEngage={setEngage}
+                    nodes={nodes}
+                />
             }
             
             {/* insertion at a porition */}

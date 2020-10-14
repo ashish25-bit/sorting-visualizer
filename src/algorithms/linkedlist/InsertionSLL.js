@@ -7,12 +7,19 @@ export const insertBeginSLL = newNode => {
     changeNodeColor({ index: 1, color: "var(--headNode)" });
 }
 
+export const insertEndSLL = newNode => {
+    const parent = document.querySelector('.linked-list-node-container');
+    const div = getNewNodeElement(newNode);
+    parent.append(div);
+    changeNodeColor({ index: 0, color: "var(--headNode)" });
+}
+
 /**
  *  @param {type} number -> refers to the type of insertion
  * 0 -> begin, 1 -> end, 2 -> at any position 
  * @param {current} number -> the current step algo which is being executed
  */
-export const backToNormal = (type, current) => {
+export const backToNormal = ({ type, ...rest }) => {
     const parent = document.querySelector('.linked-list-node-container');
     switch (type) {
         case 0:
@@ -23,12 +30,21 @@ export const backToNormal = (type, current) => {
                 firstElement.removeChild(firstElement.childNodes[len-1]);
                 firstElement.title = "New Node";
             }
-            if (current <2) {
+            if (rest.current <2) {
                 changeNodeColor({ index: 1, color: "var(--headNode)" });
                 secondElement.title = "Head";
             }
             break;
         case 1: 
+            const lastElement = parent.childNodes[rest.length];
+            const secondLastElement = parent.childNodes[rest.length-1];
+            for (let i=rest.current+1; i<rest.length; i++)
+                changeNodeColor({ index: i, color: "var(--nodeColor)" });
+            if (rest.current === rest.length-1) {
+                lastElement.removeChild(lastElement.childNodes[1]);
+                lastElement.title = "New Node";
+                secondLastElement.title = "Tail Node";
+            }
             break;
         case 2: 
             break;
@@ -58,5 +74,28 @@ export const InsertBeginController = step => {
             break;
         default:
             return;
+    }
+}
+
+export const InsertEndController = (step, length) => {
+    const parent = document.querySelector('.linked-list-node-container');
+    const secondlastElement = parent.childNodes[length-2];
+    const lastElement = parent.childNodes[length-1];
+
+    if (step <= length - 2) {
+        for (let i=1; i<=step; i++)
+            if (i === step)
+                changeNodeColor({ index: step, color: "var(--currentNode)" });
+            else 
+                changeNodeColor({ index: i, color: "var(--nodeColor)" });
+    }
+
+    else if (step === length-1) {
+        if (lastElement.childNodes.length === 1) {
+            const img = getImgElement("next.png", "next node pointer", "next-img-f");
+            lastElement.appendChild(img);
+        }
+        secondlastElement.title = "";
+        lastElement.title = "New Node Tail Node";
     }
 }
