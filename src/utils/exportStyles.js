@@ -83,3 +83,8 @@ export const selectElement = {
     background: "var(--backgroundColor)",
     color: "#fff"
 }
+
+export const width80 = {
+    width: "80%",
+    margin: '0 auto'
+}

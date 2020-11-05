@@ -9,7 +9,7 @@ const Home = () => {
 
     return (
         <div className="home-page">
-            <h3 style={{ fontSize: "3vw" }}>Data Structure and Algorithms Visualizer</h3>
+            <h3 style={{ fontSize: "3vw", textTransform: 'uppercase' }}>Data Structure and Algorithms Visualizer</h3>
             <div style={gridContainer}>
                 {
                     home.map(({ url, name, src, alt }, index) => (

@@ -16,7 +16,8 @@ import {
     btnStyle,
     inputTime,
     btnContainerStyle,
-    flex
+    flex,
+    width80
 } from '../utils/exportStyles'
 
 const Array = () => {
@@ -98,7 +99,7 @@ const Array = () => {
     const customBtnStyle = generateBtnState ? {...btnStyle, opacity: '0.5'} : btnStyle;
 
     return (
-        <div style={{ width: '80%', margin: '0 auto' }}>
+        <div style={width80}>
             <MethodHeader />
             <div style={flexContainer}>
                 <div style={flex}>

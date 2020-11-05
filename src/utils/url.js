@@ -4,4 +4,5 @@ export default {
     sLLTraversing: '/single-linked-list/traversing',
     sLLInsertion: '/single-linked-list/insertion',
     sLLDeletion: '/single-linked-list/deletion',
+    pathFinding: '/path/finding'
 }

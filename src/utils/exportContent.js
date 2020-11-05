@@ -18,5 +18,11 @@ export const home = [
         name: "Single Linked List Insertion",
         src: require('../assets/insert-begin.gif'),
         alt: "linked-list-img"
+    },
+    {
+        url: url.pathFinding,
+        name: "Path Finding Algorithm",
+        src: require('../assets/insert-begin.gif'),
+        alt: "path-finding-image"
     }
 ];

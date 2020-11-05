@@ -37,6 +37,11 @@
     
     --sliderThumb: #597CFA;
     --backgroundColor: #313131;
+
+    /* path-finding nodes */
+    --normalNode: #948e8e;
+    --start-node: #313131;
+    --dest-node: #ffffff;
 }
 
 html {
@@ -250,4 +255,40 @@ code span[attr="className"] {
 }
 button:disabled {
     cursor: initial;
+}
+
+/* Path Finding */
+.path-finding-nodes-container {
+    display: grid;
+    /* grid-template-columns: repeat(50, 1fr); */
+    grid-template-columns: repeat(auto-fit, minmax(10px, 20px));
+    height: 540px;
+    overflow-y: hidden;
+}
+.path-finding-nodes-container .node {
+    user-select: none;
+    padding: 10px;
+    border: 0.5px solid #fff;
+    background: var(--normalNode);
+}
+.path-finding-nodes-container .node.start-node {
+    background: var(--start-node);
+}
+.path-finding-nodes-container .node.end-node {
+    background: var(--dest-node);
+}
+
+.header-path-finding {
+    padding: 10px 0 30px;
+}
+.header-path-finding button {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    background: none;
+}
+
+.header-path-finding button:disabled {
+    opacity: 0.5;
 }
