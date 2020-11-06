@@ -4,7 +4,7 @@ import GraphNodes from '../components/GraphNodes';
 import { width80 } from '../utils/exportStyles';
 
 const totalNodes = 800;
-const startNodeindex = 255;
+const startNodeIndex = 255;
 const destinationNodeIndex = 441;
 
 const PathFinding = () => {
@@ -12,15 +12,15 @@ const PathFinding = () => {
     useLayoutEffect(() => { document.title="Path Finding Algorithm" } , []);
 
     const [isSelecting, setIsSelecting] = useState(0);
-    const [startingNode, setStartingNode] = useState(startNodeindex);
+    const [startingNode, setStartingNode] = useState(startNodeIndex);
     const [destinationNode, setDestinationNode] = useState(destinationNodeIndex);
     const [nodes, setNodes] = useState([]);
     const [isMouseClicked, setIsClicked] = useState(false);
 
     useEffect(() => {
-        const intialSetup = getNodes(startingNode, destinationNode);
+        const intialSetup = getNodes(startNodeIndex, destinationNodeIndex);
         setNodes(intialSetup);
-    }, [startingNode, destinationNode]);
+    }, []);
 
     const selectingNodes = (e, key) => {
         setIsSelecting(key);
@@ -33,8 +33,11 @@ const PathFinding = () => {
             if (destinationNode === index)
                 return alert('This is Destindation Node');
 
-            if (startingNode !== index)
-                setStartingNode(index)
+            if (startingNode !== index) {
+                const newNodes = changeStartEndNode("start", index, startingNode, nodes);
+                setNodes(newNodes);
+                setStartingNode(index);
+            }
         }
         
         if (isSelecting === 2) {
@@ -42,9 +45,14 @@ const PathFinding = () => {
             if (index === startingNode)
                 return alert('This is the stating Node.');
 
-            if (destinationNode !== index)
-                setDestinationNode(index)
+            if (destinationNode !== index) {
+                const newNodes = changeStartEndNode("destination", index, destinationNode, nodes);
+                setNodes(newNodes);
+                setDestinationNode(index);
+            }
         }
+
+        setIsSelecting(0);
     }
 
     const mouseDownFunction = index => {
@@ -143,6 +151,51 @@ const getAlertedNodes = (nodes, index) => {
 
     newNodes[index] = newNode;
     return newNodes;
+}
+
+const changeStartEndNode = (type, index, previousNodeIndex, nodes) => {
+    const newNodes = nodes.slice();
+    let node = newNodes[index];
+    let previousNode = newNodes[previousNodeIndex];
+
+    switch (type) {
+        case "start":
+            previousNode = {
+                ...previousNode,
+                isStart: false,
+                isWall: false
+            };
+            newNodes[previousNodeIndex] = previousNode;
+        
+            node = {
+                ...node,
+                isStart: true,
+                isWall: false
+            };
+            newNodes[index] = node;
+
+            return newNodes;
+
+        case "destination":
+            previousNode = {
+                ...previousNode,
+                isEnd: false,
+                isWall: false
+            };
+            newNodes[previousNodeIndex] = previousNode;
+        
+            node = {
+                ...node,
+                isEnd: true,
+                isWall: false
+            };
+            newNodes[index] = node;
+
+                return newNodes;
+
+        default: 
+            break;
+    }
 }
 
 export default PathFinding
