@@ -44,10 +44,3 @@ const GraphNodes = ({
 }
 
 export default GraphNodes;
-
-// {
-//     index,
-//     addType,
-//     startingNode,
-//     destinationNode
-// }

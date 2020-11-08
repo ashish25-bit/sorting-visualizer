@@ -2,10 +2,12 @@ import React, { useLayoutEffect, useState, Fragment, useEffect } from 'react';
 import MethodHeader from '../components/MethodHeader';
 import GraphNodes from '../components/GraphNodes';
 import { width80 } from '../utils/exportStyles';
+import { dijkstra } from '../algorithms/pathfinding/Dijkstra';
+import { removeVisitedNodes } from '../algorithms/pathfinding/HelperFunctions';
 
 const totalNodes = 800;
-const startNodeIndex = 255;
-const destinationNodeIndex = 441;
+const startNodeIndex = 0;
+const destinationNodeIndex = 5;
 
 const PathFinding = () => {
 
@@ -16,6 +18,7 @@ const PathFinding = () => {
     const [destinationNode, setDestinationNode] = useState(destinationNodeIndex);
     const [nodes, setNodes] = useState([]);
     const [isMouseClicked, setIsClicked] = useState(false);
+    const [isVisualizing, setIsVisualizing] = useState(false);
 
     useEffect(() => {
         const intialSetup = getNodes(startNodeIndex, destinationNodeIndex);
@@ -74,6 +77,14 @@ const PathFinding = () => {
     const clearGrid = () => {
         const intialSetup = getNodes(startingNode, destinationNode);
         setNodes(intialSetup);
+        removeVisitedNodes();
+    }
+
+    const visualizeDijkstra = () => {
+        removeVisitedNodes();
+        setIsVisualizing(true);
+        const delay = dijkstra(nodes, nodes[startingNode], nodes[destinationNode]);
+        setTimeout(() => setIsVisualizing(false), delay);
     }
 
     return (
@@ -84,7 +95,7 @@ const PathFinding = () => {
 
                     <button 
                         onClick={e => selectingNodes(e, 1)}
-                        disabled={isSelecting === 1}
+                        disabled={isSelecting === 1 || isVisualizing}
                     >{
                         isSelecting === 1 ? 
                             "Changing Start Point" : 
@@ -93,13 +104,21 @@ const PathFinding = () => {
                     
                     <button 
                         onClick={e => selectingNodes(e, 2)}
-                        disabled={isSelecting === 2}
+                        disabled={isSelecting === 2 || isVisualizing}
                     >{
                         isSelecting === 2 ? 
                             "Changing Destination Point" : 
                             "Change Desination Point"
                     }</button>
-                    <button onClick={clearGrid}>Clear Grid</button>
+                    <button 
+                        onClick={clearGrid}
+                        disabled={isVisualizing}
+                    >Clear Grid</button>
+                    
+                    <button 
+                        onClick={visualizeDijkstra}
+                        disabled={isVisualizing}
+                    >Dijkstra Algorithm</button>
                 </div>           
                 <div className='legend'>
                     <div></div>
@@ -134,7 +153,7 @@ const createNode = (index, startingNode, destinationNode) => {
         isStart: index === startingNode,
         isEnd: index === destinationNode,
         distance: Infinity,
-        isVisisted: false,
+        isVisited: false,
         isWall: false,
         previousNode: null
     }

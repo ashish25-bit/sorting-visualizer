@@ -40,9 +40,11 @@
 
     /* path-finding nodes */
     --normalNode: #948e8e;
-    --start-node: #313131;
-    --dest-node: #B12727;
-    --wall-node: #ffb4b4;
+    --startNode: #313131;
+    --destNode: #B12727;
+    --wallNode: #ffb4b4;
+    --visitedGraphNode: #4a7e85;
+    --shortestPath: #241b4a;
 }
 
 html {
@@ -262,7 +264,6 @@ button:disabled {
 .path-finding-nodes-container {
     display: grid;
     grid-template-columns: repeat(50, 1fr);
-    /* padding: 50px 0; */
 }
 .legend {
     width: 100%;
@@ -276,13 +277,13 @@ button:disabled {
     background: var(--normalNode);
 }
 .path-finding-nodes-container .node.start-node {
-    background: var(--start-node);
+    background: var(--startNode);
 }
 .path-finding-nodes-container .node.end-node {
-    background: var(--dest-node);
+    background: var(--destNode);
 }
 .path-finding-nodes-container .node.wall-node {
-    background: var(--wall-node);
+    background: var(--wallNode);
     transition: background 0.2s ease;
 }
 
@@ -299,4 +300,52 @@ button:disabled {
 
 .header-path-finding button:disabled {
     opacity: 0.5;
+}
+
+.path-finding-nodes-container .node.visited-node {
+    animation: visitedAnimation 1.5s ease-out forwards;
+    animation-play-state: running;
+}
+@keyframes visitedAnimation {
+    0% {
+      transform: scale(0.3);
+      background-color: #0f0f0fbd;
+      border-radius: 100%;
+    }
+  
+    50% {
+      background-color: #4f77ac;
+    }
+  
+    75% {
+      transform: scale(1.2);
+      background-color: rgba(0, 217, 159, 0.75);
+    }
+  
+    100% {
+      transform: scale(1);
+      background: var(--visitedGraphNode);
+    }
+}
+
+.path-finding-nodes-container .node.node-shortest-path {
+    animation: shortestPath 1.5s ease-out alternate forwards;
+    animation-play-state: running;
+}
+
+@keyframes shortestPath {
+    0% {
+        transform: scale(0.6);
+        background: var(--shortestPath);
+    }
+
+    50% {
+        transform: scale(1.2);
+        background: var(--shortestPath);
+    }
+
+    100% {
+        transform: scale(1);
+        background: var(--shortestPath);
+    }
 }
