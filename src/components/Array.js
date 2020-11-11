@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import MethodHeader from './MethodHeader';
+import ArrayNotes from './ArrayNotes';
 import { bubbleSortAlgo } from '../algorithms/array/BubbleSort';
 import { selectionSortAlgo } from '../algorithms/array/SelectionSort';
 import { insertionSortAlgo } from '../algorithms/array/InsertionSort';
@@ -101,6 +102,7 @@ const Array = () => {
     return (
         <div style={width80}>
             <MethodHeader />
+            <ArrayNotes />
             <div style={flexContainer}>
                 <div style={flex}>
                     {/* range element */}

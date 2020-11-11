@@ -102,3 +102,9 @@ export const divStyle = {
     gridGap: "10px",
     gridTemplateColumns: "repeat(3, 1fr)"
 }
+
+export const showHideNotesBtn = {
+    position: "absolute",
+    transform: "translateX(-100%)",
+    color: "#000"
+}

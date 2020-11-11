@@ -349,3 +349,41 @@ button:disabled {
         background: var(--shortestPath);
     }
 }
+
+/*
+    ARRAY NOTES
+*/
+.array-notes {
+    position: fixed;
+    top: 100px;
+    height: 80vh;
+    width: 80%;
+    background: #fff;
+    right: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+}
+.array-notes.open {
+    transform: translateX(0);
+}
+.array-notes .notes {
+    overflow-y: auto;
+    color: #000;
+    height: 80%;
+}
+.array-notes .btn {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 2px;
+    height: 20%;
+    background: #f1f1f1;
+}
+.array-notes .btn button {
+    color: #000;
+}
+
+@media screen and (max-width: 600px) {
+    .array-notes {
+        width: 90%;
+    }
+}
