@@ -4,6 +4,7 @@ import ButtonLL from '../components/ButtonLL'
 import NodeLL from '../components/NodeLL';
 import Traversal from '../components/SingleLinkedList/Traversal';
 import ReverseTraversal from '../components/SingleLinkedList/ReverseTraversal'
+import LegendNodes from '../components/Nodes/Nodes';
 import { mainContainerLL, flexContainer, llBtnStyle } from '../utils/exportStyles';
 import { TraverseSLL, reverseTraversalSLL } from '../algorithms/linkedlist/TraverseSSL';
 
@@ -130,6 +131,8 @@ const SLLTraversal = () => {
                     setEngage= {setEngage}
                 /> 
             }
+
+            { engage && <LegendNodes color={"linkedList"} /> }
         </div>
     )
 }

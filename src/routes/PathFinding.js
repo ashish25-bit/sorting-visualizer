@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState, Fragment, useEffect } from 'react';
 import MethodHeader from '../components/MethodHeader';
 import GraphNodes from '../components/GraphNodes';
+import LegendNodes from '../components/Nodes/Nodes';
 import { width80 } from '../utils/exportStyles';
 import { dijkstra } from '../algorithms/pathfinding/Dijkstra';
 import { removeVisitedNodes } from '../algorithms/pathfinding/HelperFunctions';
@@ -120,10 +121,7 @@ const PathFinding = () => {
                         disabled={isVisualizing}
                     >Dijkstra Algorithm</button>
                 </div>           
-                <div className='legend'>
-                    <div></div>
-                    <div></div>
-                </div>
+                <LegendNodes color={"pathFinding"} />
             </div>
 
 

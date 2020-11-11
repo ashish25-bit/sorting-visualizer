@@ -1,6 +1,6 @@
 # DATA STRUCTURE VISUALIZER
 
-> This is a react application which visualizes some array sorting algorithms
+> This is a react application which visualizes some array sorting algorithms, path finding algorithm and data structure.
 
 
 ## Modules and dependencies
@@ -14,6 +14,7 @@
 ## VISUALIZATION:
 * Linked List Traversal
 * Sorting Algorithms
+* Path Finding Algorithm
 
 ## BUBBLE SORT
 _Elements - 50_ <br/>

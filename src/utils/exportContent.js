@@ -22,7 +22,62 @@ export const home = [
     {
         url: url.pathFinding,
         name: "Path Finding Algorithm",
-        src: require('../assets/insert-begin.gif'),
+        src: require('../assets/path.gif'),
         alt: "path-finding-image"
     }
 ];
+
+export const colors = {
+    pathFinding: [
+        {
+            name: "Start Node",
+            color: "var(--startNode)"
+        },
+        {
+            name: "End Node",
+            color: "var(--destNode)"
+        },
+        {
+            name: "Nodes Path",
+            color: "var(--shortestPath)"
+        },
+        {
+            name: "Wall",
+            color: "var(--wallNode)"
+        },
+        {
+            name: "Visited Nodes",
+            color: "var(--visitedGraphNode)"
+        },
+        {
+            name: "Nodes",
+            color: "var(--normalNode)"
+        }
+    ],
+    linkedList: [
+        {
+            name: "Current Node",
+            color: "var(--currentNode)"
+        },
+        {
+            name: "Normal Node",
+            color: "var(--nodeColor)"
+        },
+        {
+            name: "Visited Node",
+            color: "var(--visitedNode)"
+        },
+        {
+            name: "Pedning Node",
+            color: "var(--pendingNode)"
+        },
+        {
+            name: "head Node",
+            color: "var(--headNode)"
+        },
+        {
+            name: "New Node",
+            color: "var(--newnode)"
+        }
+    ]
+};

@@ -88,3 +88,17 @@ export const width80 = {
     width: "80%",
     margin: '0 auto'
 }
+
+export function getStyle(color) {
+    return {
+        textTransform: "uppercase",
+        background: color,
+        padding: "10px",
+    }
+}
+
+export const divStyle = {
+    display: "grid",
+    gridGap: "10px",
+    gridTemplateColumns: "repeat(3, 1fr)"
+}

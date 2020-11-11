@@ -4,6 +4,7 @@ import ButtonLL from '../components/ButtonLL';
 import NodeLL from '../components/NodeLL';
 import InsertBegin from '../components/SingleLinkedList/InsertBegin';
 import InsertEnd from '../components/SingleLinkedList/InsertEnd';
+import LegendNodes from '../components/Nodes/Nodes';
 import { mainContainerLL, flexContainer, llBtnStyle, selectElement } from '../utils/exportStyles';
 import { insertBeginSLL, insertEndSLL } from '../algorithms/linkedlist/InsertionSLL';
 
@@ -161,6 +162,7 @@ const SLLInsertion = () => {
                     }</select>
                 </div>
             </div>
+            { engage && <LegendNodes color={"linkedList"} /> }
 
         </div>
     )
