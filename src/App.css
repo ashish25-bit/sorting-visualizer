@@ -370,6 +370,7 @@ button:disabled {
     overflow-y: auto;
     color: #000;
     height: 80%;
+    padding: 10px;
 }
 .array-notes .btn {
     display: grid;

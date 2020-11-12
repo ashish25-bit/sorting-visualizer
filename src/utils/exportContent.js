@@ -81,3 +81,38 @@ export const colors = {
         }
     ]
 };
+
+export const arrayNotes = [
+    [
+        "This sorting technique uses two for loops(nested).",
+        "Time complexity: O(N^2)",
+        "Space complexity: O(1)",
+        "The largest element is put in it's sorted position in each iteration."
+    ],
+    [
+        "This is Selection Sort",
+        "Time complexity: O(N^2)",
+        "Space complexity: O(1)",
+    ],
+    [
+        "This is Insertion Sort",
+        "Time complexity: O(N^2)",
+        "Space complexity: O(1)",
+    ],
+    [
+        "This is Merge Sort",
+        "Time complexity: O(N * log N)",
+    ],
+    [
+        "This is Quick Sort",
+        "Time complexity: O(N * log N)",
+    ],
+    [
+        "This is Heap Sort",
+        "Time complexity: O(N^2)",
+    ],
+    [
+        "This is Shell Sort",
+        "Time complexity: O(N^2)",
+    ]
+];

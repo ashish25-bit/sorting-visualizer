@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { showHideNotesBtn } from '../utils/exportStyles';
+import { arrayNotes } from '../utils/exportContent';
 const btns = [
     "Bubble Sort",
     "Selection Sort",
@@ -8,7 +9,7 @@ const btns = [
     "Quick Sort",
     "Heap Sort",
     "Shell Sort"
-]
+];
 
 const ArrayNotes = () => {
 
@@ -21,7 +22,6 @@ const ArrayNotes = () => {
         if (currentAlgo !== index)
             setCurrentAlgo(index);
     }
-
     return (
         <div className={classname}>
 
@@ -34,6 +34,10 @@ const ArrayNotes = () => {
 
             <div className='notes'>
                 <h1>{btns[currentAlgo]}</h1>
+                <ul style={{ marginLeft: "20px" }}>{ 
+                    arrayNotes[currentAlgo].map((p, index) =>
+                        <li key={index}>{p}</li>
+                )}</ul>
             </div>
             <div className='btn'>{
                 btns.map((name, index) =>  
