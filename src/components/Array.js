@@ -6,7 +6,7 @@ import { selectionSortAlgo } from '../algorithms/array/SelectionSort';
 import { insertionSortAlgo } from '../algorithms/array/InsertionSort';
 import { MergeSortAlgo } from '../algorithms/array/MergeSort';
 import { QuickSortAlgo } from '../algorithms/array/QuickSort';
-import { HeapSortAlgo } from '../algorithms/array/HeapSort';
+// import { HeapSortAlgo } from '../algorithms/array/HeapSort';
 import { ShellSortAlgo } from '../algorithms/array/ShellSort';
 import InputModal from './InputModal';
 import MarkNumber from './MarkNumber';
@@ -177,11 +177,11 @@ const Array = () => {
                             >Quick Sort</button>
 
                             {/* heap sort */}
-                            <button 
+                            {/* <button 
                                 style={algorithmButtonStyle}
                                 onClick={() => clickHandler(HeapSortAlgo)}
                                 disabled={sorting}
-                            >Heap Sort</button>
+                            >Heap Sort</button> */}
 
                             {/* shell sort */}
                             <button

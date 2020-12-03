@@ -36,7 +36,7 @@ export const insertionSortAlgo = (numberArray, speed)=> {
         changeBarWidth(j+1, numberArray[j+1], delay, length, 'var(--sortedColor)')
         delay += parseInt(speed)
         // updating bar color
-        for(let k=0; k<i; k++) {
+        for(let k=0; k<=i; k++) {
             changeBarColor(k, 'var(--sortedColor)', delay)
             delay += parseInt(speed)
         }

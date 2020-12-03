@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { showHideNotesBtn } from '../utils/exportStyles';
-import { arrayNotes } from '../utils/exportContent';
+import { arrayNotes, codes } from '../utils/exportContent';
 const btns = [
     "Bubble Sort",
     "Selection Sort",
     "Insertion Sort",
     "Merge Sort",
     "Quick Sort",
-    "Heap Sort",
     "Shell Sort"
 ];
 
@@ -37,7 +36,12 @@ const ArrayNotes = () => {
                 <ul style={{ marginLeft: "20px" }}>{ 
                     arrayNotes[currentAlgo].map((p, index) =>
                         <li key={index}>{p}</li>
-                )}</ul>
+                )}
+                    <li> <b>Algorithm Used</b> </li>
+                </ul>
+
+                <pre>{codes[currentAlgo]}</pre>
+
             </div>
             <div className='btn'>{
                 btns.map((name, index) =>  
