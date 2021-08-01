@@ -9,7 +9,7 @@ import { removeVisitedNodes } from '../algorithms/pathfinding/HelperFunctions';
 const totalNodes = 800;
 const startNodeIndex = 464;
 const destinationNodeIndex = 275;
-const defaultWallNodes = [265, 266, 317, 368, 418, 419, 420, 421, 422, 372, 322, 273, 174, 228, 325, 175, 176, 177, 178, 326, 327];
+let defaultWallNodes = [265, 266, 317, 368, 418, 419, 420, 421, 422, 372, 322, 273, 174, 228, 325, 175, 176, 177, 178, 326, 327];
 
 const PathFinding = () => {
 
@@ -77,6 +77,7 @@ const PathFinding = () => {
     }
 
     const clearGrid = () => {
+        defaultWallNodes = [];
         const intialSetup = getNodes(startingNode, destinationNode);
         setNodes(intialSetup);
         removeVisitedNodes();
