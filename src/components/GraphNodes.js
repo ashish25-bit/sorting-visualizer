@@ -12,10 +12,7 @@ const GraphNodes = ({
         index,
         isStart,
         isEnd,
-        // distance,
-        // isVisisted,
         isWall,
-        // previousNode,
     } = data;
 
     const className = 

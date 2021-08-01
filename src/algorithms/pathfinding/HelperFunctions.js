@@ -1,15 +1,4 @@
-export const getAllNodes = grid => {
-    const nodes = [];
-
-    for (const node of grid)
-        nodes.push(node);    
-
-    return nodes;
-}
-
-export const sortNodesByDistance = unvisitedNodes => {
-    unvisitedNodes.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
-}
+import { COLUMNS, ROWS } from './Fields';
 
 export const changeColorNode = (visitedNodes, shortestPathNodes) => {
     let delay = 0;
@@ -22,7 +11,7 @@ export const changeColorNode = (visitedNodes, shortestPathNodes) => {
             setTimeout(() => {
                 animateShortestPath(shortestPathNodes);
             }, delay + 10);
-            
+
             break;
         }
 
@@ -50,9 +39,33 @@ function animateShortestPath (shortestPathNodes) {
 
 export const removeVisitedNodes = () => {
     const allNodes = document.querySelectorAll('.path-finding-nodes-container .node');
-    
+
     for (const node of allNodes) {
         node.classList.remove('node-shortest-path');
         node.classList.remove('visited-node');
     }
+}
+
+export function get2DArray(ROWS, COLUMNS, value = 0) {
+    const arr = new Array(ROWS);
+
+    for (let i=0; i < ROWS; i++)
+        arr[i] = new Array(COLUMNS).fill(value);
+
+    return arr;
+}
+
+export function popUntilFinal(arr, node) {
+    while (arr[arr.length - 1] !== node)
+        arr.pop();
+    return arr;
+}
+
+export function isValid(x, y) {
+    return x >= 0 && y >= 0 && x < ROWS && y < COLUMNS;
+}
+
+export function getNode(grid, row, col) {
+    const index = (COLUMNS * row) + (col);
+    return grid[index];
 }

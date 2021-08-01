@@ -1,72 +1,7 @@
-import { getAllNodes, sortNodesByDistance, changeColorNode } from './HelperFunctions';
-const COLUMNS = 50;
-const ROWS = 16;
-
-export const dijkstra = (grid, startNode, finishNode) => {
-
-    const visitedNodesInOrder = [];
-    startNode.distance = 0;
-
-    const unvisitedNodes = getAllNodes(grid);
-    
-    while (!!unvisitedNodes.length) {
-        sortNodesByDistance(unvisitedNodes);
-
-        const closestNode = unvisitedNodes.shift();
-        if (closestNode.isWall)
-            continue;
-
-        // If the closest node is at a distance of infinity,
-        // we must be trapped and should therefore stop.
-        if (closestNode.distance === Infinity) 
-            break;
-            // return visitedNodesInOrder;
-        
-        closestNode.isVisited = true;
-        visitedNodesInOrder.push(closestNode);
-        
-        if (closestNode === finishNode)
-            break;
-            // return visitedNodesInOrder;
-        
-        updateUnvisitedNeighbors(closestNode, grid);
-    }
-
-    // get the nodes of the shortest path
-    const shortestPathNodes = getNodesInShortestPathOrder(finishNode);
-    return changeColorNode(visitedNodesInOrder, shortestPathNodes);  
-}
-
-function updateUnvisitedNeighbors (node, grid) {
-    const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
-
-    for (const neighbor of unvisitedNeighbors) {
-        neighbor.distance = node.distance + 1;
-        neighbor.previousNode = node;
-    }
-}
-  
-function getUnvisitedNeighbors (node, grid) {
-    const neighbors = [];
-    const { index } = node;
-    
-    const mod = index % COLUMNS;
-    const div = index / COLUMNS;
-
-    if (mod !== 0) 
-        neighbors.push(grid[index - 1]);
-    
-    if (mod !== COLUMNS - 1)
-        neighbors.push(grid[index + 1]);
-    
-    if (div < ROWS - 1)
-        neighbors.push(grid[index + 50]);
-
-    if (div >= 1)
-        neighbors.push(grid[index - 50]);
-
-    return neighbors.filter(neighbor => !neighbor.isVisited);
-}
+import { changeColorNode, get2DArray, popUntilFinal, isValid, getNode } from './HelperFunctions';
+import { Point } from './Point';
+import { Heap } from './Heap';
+import { COLUMNS, ROWS, dx, dy } from './Fields';
 
 function getNodesInShortestPathOrder (finishNode) {
     const nodesInShortestPathOrder = [];
@@ -78,4 +13,59 @@ function getNodesInShortestPathOrder (finishNode) {
     }
 
     return nodesInShortestPathOrder;
+}
+
+export const dijkstra = (grid, startNode, finishNode) => {
+    const [finalNode, visitedNodesInOrder] = dijkstraAlgo(grid, startNode, finishNode);
+
+    if (finalNode === null)
+        return [1000, false];
+    const shortestPathNodes = getNodesInShortestPathOrder(finishNode);
+
+    return [changeColorNode(visitedNodesInOrder, shortestPathNodes), true];
+}
+
+function dijkstraAlgo(grid, startNode, finishNode) {
+    const start   = new Point(startNode, 0);
+    const end     = new Point(finishNode);
+    const visited = get2DArray(ROWS, COLUMNS, false);
+
+    let visitedNodesInOrder = [];
+    visitedNodesInOrder.push(startNode);
+
+    visited[start.x][start.y] = true;
+    const heap = new Heap();
+    heap.insert(start);
+
+    while (!heap.empty()) {
+        const curr = heap.top();
+
+        if (curr.x === end.x && curr.y === end.y) {
+            visitedNodesInOrder = popUntilFinal(visitedNodesInOrder, finishNode);
+            return [curr.node, visitedNodesInOrder];
+        }
+        heap.remove();
+
+        if (curr.dist === Infinity) break;
+
+        for (let i=0; i < 4; i++) {
+            const nextX = curr.x + dx[i];
+            const nextY = curr.y + dy[i];
+
+            if (isValid(nextX, nextY) && visited[nextX][nextY] === false) {
+                const node = getNode(grid, nextX, nextY);
+                if (!node.isWall) {
+                    node.previousNode = curr.node;
+
+                    visitedNodesInOrder.push(node);
+
+                    visited[nextX][nextY] = true;
+                    const point = new Point(node, curr.dist + 1);
+                    heap.insert(point);
+                }
+            }
+        }
+    }
+
+    return [null, visitedNodesInOrder];
 }

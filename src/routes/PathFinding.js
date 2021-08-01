@@ -7,8 +7,9 @@ import { dijkstra } from '../algorithms/pathfinding/Dijkstra';
 import { removeVisitedNodes } from '../algorithms/pathfinding/HelperFunctions';
 
 const totalNodes = 800;
-const startNodeIndex = 0;
-const destinationNodeIndex = 5;
+const startNodeIndex = 464;
+const destinationNodeIndex = 275;
+const defaultWallNodes = [265, 266, 317, 368, 418, 419, 420, 421, 422, 372, 322, 273, 174, 228, 325, 175, 176, 177, 178, 326, 327];
 
 const PathFinding = () => {
 
@@ -33,7 +34,7 @@ const PathFinding = () => {
     const addType = index => {
 
         if (isSelecting === 1) {
-            
+
             if (destinationNode === index)
                 return alert('This is Destindation Node');
 
@@ -43,7 +44,7 @@ const PathFinding = () => {
                 setStartingNode(index);
             }
         }
-        
+
         if (isSelecting === 2) {
 
             if (index === startingNode)
@@ -84,7 +85,12 @@ const PathFinding = () => {
     const visualizeDijkstra = () => {
         removeVisitedNodes();
         setIsVisualizing(true);
-        const delay = dijkstra(nodes, nodes[startingNode], nodes[destinationNode]);
+        const [delay, status] = dijkstra(nodes, nodes[startingNode], nodes[destinationNode]);
+
+        if (!status) {
+            alert('No Path found');
+        }
+
         setTimeout(() => setIsVisualizing(false), delay);
     }
 
@@ -94,40 +100,40 @@ const PathFinding = () => {
                 <MethodHeader />
                 <div className="header-path-finding">
 
-                    <button 
+                    <button
                         onClick={e => selectingNodes(e, 1)}
                         disabled={isSelecting === 1 || isVisualizing}
                     >{
-                        isSelecting === 1 ? 
-                            "Changing Start Point" : 
+                        isSelecting === 1 ?
+                            "Changing Start Point" :
                             "Change Starting Point"
                     }</button>
-                    
+
                     <button 
                         onClick={e => selectingNodes(e, 2)}
                         disabled={isSelecting === 2 || isVisualizing}
                     >{
-                        isSelecting === 2 ? 
-                            "Changing Destination Point" : 
+                        isSelecting === 2 ?
+                            "Changing Destination Point" :
                             "Change Desination Point"
                     }</button>
-                    <button 
+                    <button
                         onClick={clearGrid}
                         disabled={isVisualizing}
                     >Clear Grid</button>
-                    
-                    <button 
+
+                    <button
                         onClick={visualizeDijkstra}
                         disabled={isVisualizing}
                     >Dijkstra Algorithm</button>
-                </div>           
+                </div>
                 <LegendNodes color={"pathFinding"} />
             </div>
 
 
             <div className='path-finding-nodes-container'>
             {nodes.map((nodeData, index) =>
-                    <GraphNodes 
+                    <GraphNodes
                         key={index}
                         data={nodeData}
                         addType={addType}
@@ -150,19 +156,20 @@ const createNode = (index, startingNode, destinationNode) => {
         index,
         isStart: index === startingNode,
         isEnd: index === destinationNode,
-        distance: Infinity,
-        isVisited: false,
-        isWall: false,
+        isWall: defaultWallNodes.find(i => i === index),
         previousNode: null
     }
 }
 
 const getAlertedNodes = (nodes, index) => {
+    if (nodes[index].isEnd || nodes[index].isStart)
+        return nodes;
+    console.log(index);
     const newNodes = nodes.slice();
     const node = newNodes[index];
 
     const newNode = {
-        ...node, 
+        ...node,
         isWall: !node.isWall
     }
 
@@ -183,7 +190,7 @@ const changeStartEndNode = (type, index, previousNodeIndex, nodes) => {
                 isWall: false
             };
             newNodes[previousNodeIndex] = previousNode;
-        
+
             node = {
                 ...node,
                 isStart: true,
@@ -200,7 +207,7 @@ const changeStartEndNode = (type, index, previousNodeIndex, nodes) => {
                 isWall: false
             };
             newNodes[previousNodeIndex] = previousNode;
-        
+
             node = {
                 ...node,
                 isEnd: true,
@@ -210,9 +217,9 @@ const changeStartEndNode = (type, index, previousNodeIndex, nodes) => {
 
                 return newNodes;
 
-        default: 
+        default:
             break;
     }
 }
 
-export default PathFinding
+export default PathFinding;
