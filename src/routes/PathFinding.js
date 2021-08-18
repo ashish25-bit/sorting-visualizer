@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState, Fragment, useEffect } from 'react';
 import MethodHeader from '../components/MethodHeader';
-import GraphNodes from '../components/GraphNodes';
+import GraphNodes from '../components/Graph/GraphNodes';
 import LegendNodes from '../components/Nodes/Nodes';
 import { width80 } from '../utils/exportStyles';
 import { dijkstra } from '../algorithms/pathfinding/Dijkstra';

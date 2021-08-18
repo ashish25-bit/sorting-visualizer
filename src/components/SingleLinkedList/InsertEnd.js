@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import StepsController from '../StepsController';
+import StepsController from './StepsController';
 import InsertEndCode from './Code/InsertEnd';
 import { InsertEndController } from '../../algorithms/linkedlist/InsertionSLL';
 import { backToNormal } from '../../algorithms/linkedlist/InsertionSLL';

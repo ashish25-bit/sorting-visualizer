@@ -2,7 +2,7 @@ import React from 'react';
 import { colors } from '../../utils/exportContent';
 import { divStyle, getStyle } from '../../utils/exportStyles';
 
-const Nodes = ({ color }) => {    
+const Nodes = ({ color }) => {
     return (
         <div style={divStyle}>{
             colors[color].map(({ name, color }, index) => (

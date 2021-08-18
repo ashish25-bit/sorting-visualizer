@@ -32,7 +32,7 @@ const NodeLL = ({ nodes, linkedList }) => {
 
 // returns the next pointer for single linked list
 function returnImageElement0(src, className, alt) {
-    return <img src={require(`../assets/${src}`)} className={className} alt={alt} />
+    return <img src={require(`../../assets/${src}`)} className={className} alt={alt} />
 }
 
 export default NodeLL

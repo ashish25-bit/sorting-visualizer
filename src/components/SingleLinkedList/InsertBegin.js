@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import StepsController from '../StepsController';
+import StepsController from './StepsController';
 import InsertBeginCode from './Code/InsertBegin';
 import { backToNormal, InsertBeginController } from '../../algorithms/linkedlist/InsertionSLL';
 import { changeNodeColor } from '../../algorithms/linkedlist/HelperFuntion';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { showHideNotesBtn } from '../utils/exportStyles';
-import { arrayNotes, codes } from '../utils/exportContent';
+import { showHideNotesBtn } from '../../utils/exportStyles';
+import { arrayNotes, codes } from '../../utils/exportContent';
 const btns = [
     "Bubble Sort",
     "Selection Sort",

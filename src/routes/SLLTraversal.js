@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback, useLayoutEffect } from 'react';
 import MethodHeader from '../components/MethodHeader';
-import ButtonLL from '../components/ButtonLL'
-import NodeLL from '../components/NodeLL';
+import ButtonLL from '../components/SingleLinkedList/ButtonLL'
+import NodeLL from '../components/SingleLinkedList/NodeLL';
 import Traversal from '../components/SingleLinkedList/Traversal';
 import ReverseTraversal from '../components/SingleLinkedList/ReverseTraversal'
 import LegendNodes from '../components/Nodes/Nodes';

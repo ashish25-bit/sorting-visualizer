@@ -24,7 +24,13 @@ export const home = [
         name: "Path Finding Algorithm",
         src: require('../assets/path.gif'),
         alt: "path-finding-image"
-    }
+    },
+    // {
+    //     url: url.trees,
+    //     name: "Tree",
+    //     src: require('../assets/path.gif'),
+    //     alt: "tree-image"
+    // }
 ];
 
 export const colors = {

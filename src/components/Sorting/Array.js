@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import MethodHeader from './MethodHeader';
+import MethodHeader from '../MethodHeader';
 import ArrayNotes from './ArrayNotes';
-import { bubbleSortAlgo } from '../algorithms/array/BubbleSort';
-import { selectionSortAlgo } from '../algorithms/array/SelectionSort';
-import { insertionSortAlgo } from '../algorithms/array/InsertionSort';
-import { MergeSortAlgo } from '../algorithms/array/MergeSort';
-import { QuickSortAlgo } from '../algorithms/array/QuickSort';
+import { bubbleSortAlgo } from '../../algorithms/array/BubbleSort';
+import { selectionSortAlgo } from '../../algorithms/array/SelectionSort';
+import { insertionSortAlgo } from '../../algorithms/array/InsertionSort';
+import { MergeSortAlgo } from '../../algorithms/array/MergeSort';
+import { QuickSortAlgo } from '../../algorithms/array/QuickSort';
 // import { HeapSortAlgo } from '../algorithms/array/HeapSort';
-import { ShellSortAlgo } from '../algorithms/array/ShellSort';
+import { ShellSortAlgo } from '../../algorithms/array/ShellSort';
 import InputModal from './InputModal';
 import MarkNumber from './MarkNumber';
 import Bars from './Bars';
@@ -19,7 +19,7 @@ import {
     btnContainerStyle,
     flex,
     width80
-} from '../utils/exportStyles'
+} from '../../utils/exportStyles'
 
 const Array = () => {
 
@@ -116,7 +116,7 @@ const Array = () => {
                         disabled={sorting || inputArrayOn}
                     />{' '}
                     <label style={{ fontSize: '12px' }}>{range} Elements</label> {' '}
-                    
+
                     {/* timer element */}
                     <input 
                         type='tel'
@@ -147,7 +147,7 @@ const Array = () => {
                                 onClick={() => clickHandler(bubbleSortAlgo)}
                                 disabled={sorting}
                             >Bubble Sort</button>
-                            
+
                             {/* selection sort */}
                             <button
                                 style={algorithmButtonStyle}
@@ -191,7 +191,7 @@ const Array = () => {
                             >Shell Sort</button>
                         </div>
                     }
-                    
+
                     {/* generating new array */}
                     <button
                         style={customBtnStyle}
@@ -216,7 +216,7 @@ const Array = () => {
                 comparision={50}
             />
             <MarkNumber customStyle={flexContainer} />
-            <InputModal 
+            <InputModal
                 view={modalView} 
                 closeModal={closeInputModal}
                 arrayAsInput={setArrayAsInput}

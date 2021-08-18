@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import StepsController from '../StepsController'
+import StepsController from './StepsController'
 import TraversalCode from './Code/Traversal';
 import { TraverseSLL, backToNormal } from '../../algorithms/linkedlist/TraverseSSL';
 
